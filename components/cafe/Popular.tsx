@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import Container from "@/components/ui/Container";
 import Image from "next/image";
 
@@ -69,8 +69,8 @@ const items = [
 ];
 
 export default function Popular() {
-  // PREMIUM UPGRADE: Staggered animations for the header text
-  const containerVariants = {
+  // FIXED: Added Variants type and explicit transition for Next.js 16/Turbopack
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -78,11 +78,16 @@ export default function Popular() {
     },
   };
 
-  const textVariants = {
+  const textVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     show: {
-      opacity: 1, y: 0,
-      transition: { type: "spring", stiffness: 100, damping: 20 },
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        type: "spring", 
+        stiffness: 100, 
+        damping: 20 
+      } as any, // Emergency fix for Vercel build
     },
   };
 
@@ -106,7 +111,6 @@ export default function Popular() {
           line-height: 1.6;
         }
 
-        /* PREMIUM UPGRADE: High-end frosted card style */
         .popular-card {
           border-radius: 32px;
           box-shadow: 0 15px 40px -10px rgba(180, 50, 10, 0.2);
@@ -115,11 +119,9 @@ export default function Popular() {
         }
       `}</style>
 
-      {/* Clean, transparent wrapper */}
       <section className="py-20 lg:py-28 relative z-10">
         <Container>
           
-          {/* Header - Staggered Animations */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -128,7 +130,6 @@ export default function Popular() {
             className="text-center mb-16"
           >
             <motion.div variants={textVariants} className="mb-5">
-              {/* Premium Glass Badge */}
               <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/40 px-6 py-2.5 rounded-full shadow-lg">
                 <span className="text-white">🍽️</span>
                 <span className="uppercase tracking-[4px] text-[13px] font-extrabold text-white" style={{ fontFamily: "'Nunito', sans-serif" }}>Yummy Menu</span>
@@ -144,20 +145,18 @@ export default function Popular() {
             </motion.p>
           </motion.div>
 
-          {/* Premium Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
             {items.map((item, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, type: "spring", stiffness: 100 }}
+                transition={{ delay: index * 0.1, type: "spring", stiffness: 100 } as any}
                 viewport={{ once: true }}
                 whileHover={{ scale: 1.03, y: -8, boxShadow: "0 30px 60px -15px rgba(180, 50, 10, 0.4)" }}
                 whileTap={{ scale: 0.98 }}
                 className={`popular-card group p-4 border-2 flex flex-col ${item.cardBg} ${item.borderColor}`}
               >
-                {/* Premium Frosted Image Container */}
                 <div className="relative aspect-[4/3] w-full rounded-[24px] overflow-hidden bg-white/10 backdrop-blur-sm border-4 border-white/80 shadow-sm mb-5">
                   <Image
                     src={item.image}
@@ -166,7 +165,6 @@ export default function Popular() {
                     className="object-cover group-hover:scale-110 transition duration-700 ease-out mix-blend-overlay"
                   />
                   
-                  {/* Subtle bottom fade into the card color */}
                   <div
                     className="absolute inset-0 pointer-events-none"
                     style={{
@@ -174,22 +172,20 @@ export default function Popular() {
                     }}
                   />
 
-                  {/* Premium Solid Emoji Badge with floating animation */}
                   <motion.div 
                     animate={{ y: [0, -6, 0] }}
                     transition={{ 
                       duration: 3, 
                       repeat: Infinity, 
                       ease: "easeInOut",
-                      delay: index * 0.2 // Stagger the floating effect
-                    }}
+                      delay: index * 0.2 
+                    } as any}
                     className={`absolute top-4 right-4 w-14 h-14 rounded-full ${item.badgeColor} shadow-lg flex items-center justify-center text-3xl group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 border border-white/50 z-20`}
                   >
                     {item.emoji}
                   </motion.div>
                 </div>
 
-                {/* Text Content */}
                 <div className="px-3 pb-3 text-center flex-1 flex flex-col justify-center">
                   <h3 className={`text-2xl lg:text-[26px] font-black mb-2 ${item.titleColor}`} style={{ fontFamily: "'Baloo 2', cursive" }}>
                     {item.title}
@@ -206,4 +202,4 @@ export default function Popular() {
       </section>
     </>
   );
-}   
+}
