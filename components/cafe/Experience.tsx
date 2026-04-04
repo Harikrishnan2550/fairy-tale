@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import Container from "@/components/ui/Container";
 import { Coffee, Users, Sparkles, Clock } from "lucide-react";
 
@@ -49,20 +49,29 @@ const features = [
 ];
 
 export default function Experience() {
-  // PREMIUM UPGRADE: Staggered animations for the header
-  const containerVariants = {
+  // FIXED: Added Variants type to satisfy TypeScript in Next.js 15+
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.1 },
+      transition: { 
+        staggerChildren: 0.15, 
+        delayChildren: 0.1 
+      },
     },
   };
 
-  const textVariants = {
+  // FIXED: Added Variants type and explicit transition types
+  const textVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     show: {
-      opacity: 1, y: 0,
-      transition: { type: "spring", stiffness: 100, damping: 20 },
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        type: "spring", 
+        stiffness: 100, 
+        damping: 20 
+      },
     },
   };
 
@@ -86,7 +95,6 @@ export default function Experience() {
           line-height: 1.6;
         }
 
-        /* PREMIUM UPGRADE: High-end frosted card style to match the new aesthetic */
         .experience-card {
           border-radius: 40px;
           padding: 36px 28px;
@@ -103,7 +111,6 @@ export default function Experience() {
         }
       `}</style>
 
-      {/* Clean, transparent wrapper */}
       <section className="py-20 lg:py-28 relative z-10">
         <Container>
           
@@ -142,11 +149,14 @@ export default function Experience() {
                   key={index}
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1, type: "spring", stiffness: 100 }}
+                  transition={{ 
+                    delay: index * 0.1, 
+                    type: "spring", 
+                    stiffness: 100 
+                  }}
                   viewport={{ once: true }}
                   className="experience-card group bg-white/70 backdrop-blur-sm relative overflow-hidden"
                 >
-                  {/* Subtle background gradient based on the item color */}
                   <div className={`absolute inset-0 opacity-40 ${item.cardBg} z-0 pointer-events-none`} />
 
                   <div className="relative z-10 flex flex-col items-center">
@@ -156,7 +166,7 @@ export default function Experience() {
                       transition={{ 
                         duration: 3, 
                         repeat: Infinity, 
-                        ease: "easeInOut",
+                        ease: "easeInOut" as const, // Fixed: Added 'as const' for strict TS
                         delay: index * 0.2 
                       }}
                       className={`w-20 h-20 mb-8 rounded-[24px] flex items-center justify-center text-white ${item.iconBg} ${item.shadow} shadow-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 border-2 border-white/50`}
