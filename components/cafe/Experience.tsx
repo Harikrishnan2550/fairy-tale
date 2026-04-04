@@ -72,6 +72,7 @@ export default function Experience() {
 
   return (
     <>
+    
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@800;900&family=Nunito:wght@700;800;900&display=swap');
         .experience-title { font-family: 'Baloo 2', cursive; font-weight: 900; letter-spacing: -1.5px; line-height: 1; color: white; }
