@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+/* Theme variables */
+
+:root {
+
+  --primary:#E11D48;
+  --secondary:#F97316;
+  --accent:#FB7185;
+
+  --background:#fff7ed;
+  --foreground:#1f2937;
+
+}
+
+/* Dark mode optional (can keep) */
+
+@media (prefers-color-scheme: dark) {
+
+:root {
+
+  --background:#0a0a0a;
+  --foreground:#ededed;
+
+}
+
+}
+
+/* Base styles */
+
+body {
+
+background:
+linear-gradient(
+180deg,
+#fff7ed,
+#fff1f2
+);
+
+color:var(--foreground);
+
+font-family:var(--font-body);
+
+overflow-x:hidden;
+
+}
+
+/* Headings */
+
+h1,h2,h3,h4{
+
+font-family:var(--font-heading);
+
+font-weight:600;
+
+}
+
+/* Reusable section spacing */
+
+.section-padding{
+
+padding-top:4rem;
+padding-bottom:4rem;
+
+}
+
+@media(min-width:768px){
+
+.section-padding{
+
+padding-top:6rem;
+padding-bottom:6rem;
+
+}
+
+}
+
+/* Container utility */
+
+.container-custom{
+
+max-width:1280px;
+
+margin-left:auto;
+margin-right:auto;
+
+padding-left:1rem;
+padding-right:1rem;
+
+}
+
+@media(min-width:640px){
+
+.container-custom{
+
+padding-left:1.5rem;
+padding-right:1.5rem;
+
+}
+
+}
+
+@media(min-width:1024px){
+
+.container-custom{
+
+padding-left:2rem;
+padding-right:2rem;
+
+}
+
+}
+
+/* Smooth scrolling */
+
+html{
+
+scroll-behavior:smooth;
+
+}
+
+/* Optional floating animation (for decorations later) */
+
+@keyframes float {
+
+0%{
+
+transform:translateY(0px);
+
+}
+
+50%{
+
+transform:translateY(-10px);
+
+}
+
+100%{
+
+transform:translateY(0px);
+
+}
+
+}
+
+.float{
+
+animation:float 6s ease-in-out infinite;
+
+}
