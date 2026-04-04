@@ -1,10 +1,9 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import { Coffee, Users, Sparkles, Clock } from "lucide-react";
 
-// PREMIUM UPGRADE: Added pastel gradients, solid icon backgrounds, and specific text colors
 const features = [
   {
     title: "Comfortable Seating",
@@ -49,8 +48,8 @@ const features = [
 ];
 
 export default function Experience() {
-  // FIXED: Added Variants type to satisfy TypeScript in Next.js 15+
-  const containerVariants: Variants = {
+  // FIXED: Added "as const" to satisfy strict Framer Motion types in Next.js 15+
+  const containerVariants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -59,21 +58,20 @@ export default function Experience() {
         delayChildren: 0.1 
       },
     },
-  };
+  } as const;
 
-  // FIXED: Added Variants type and explicit transition types
-  const textVariants: Variants = {
+  const textVariants = {
     hidden: { opacity: 0, y: 30 },
     show: {
       opacity: 1, 
       y: 0,
       transition: { 
-        type: "spring", 
+        type: "spring" as const, // CRITICAL FIX: Explicit type assertion
         stiffness: 100, 
         damping: 20 
       },
     },
-  };
+  } as const;
 
   return (
     <>
@@ -114,7 +112,6 @@ export default function Experience() {
       <section className="py-20 lg:py-28 relative z-10">
         <Container>
           
-          {/* Header - Staggered Animations */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -123,7 +120,6 @@ export default function Experience() {
             className="text-center mb-16"
           >
             <motion.div variants={textVariants} className="mb-5">
-              {/* Premium Glass Badge */}
               <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/40 px-6 py-2.5 rounded-full shadow-lg">
                 <span className="text-white">☕</span>
                 <span className="uppercase tracking-[4px] text-[13px] font-extrabold text-white" style={{ fontFamily: "'Nunito', sans-serif" }}>Cozy Vibes</span>
@@ -139,7 +135,6 @@ export default function Experience() {
             </motion.p>
           </motion.div>
 
-          {/* Premium Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
             {features.map((item, index) => {
               const Icon = item.icon;
@@ -151,7 +146,7 @@ export default function Experience() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ 
                     delay: index * 0.1, 
-                    type: "spring", 
+                    type: "spring" as const, // Added as const for consistency
                     stiffness: 100 
                   }}
                   viewport={{ once: true }}
@@ -160,13 +155,12 @@ export default function Experience() {
                   <div className={`absolute inset-0 opacity-40 ${item.cardBg} z-0 pointer-events-none`} />
 
                   <div className="relative z-10 flex flex-col items-center">
-                    {/* Animated, Floating Premium Icon */}
                     <motion.div 
                       animate={{ y: [0, -6, 0] }}
                       transition={{ 
                         duration: 3, 
                         repeat: Infinity, 
-                        ease: "easeInOut" as const, // Fixed: Added 'as const' for strict TS
+                        ease: "easeInOut" as const, // Added as const
                         delay: index * 0.2 
                       }}
                       className={`w-20 h-20 mb-8 rounded-[24px] flex items-center justify-center text-white ${item.iconBg} ${item.shadow} shadow-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 border-2 border-white/50`}
