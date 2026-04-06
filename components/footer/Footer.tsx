@@ -201,10 +201,7 @@ export default function Footer() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6">
-              <p className="flex items-center justify-center gap-2">
-                Designed with <motion.span animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 1.5 } as any}>❤️</motion.span> for kids
-              </p>
-              <span className="hidden sm:block opacity-50">|</span>
+             
               <p>
                 Developed by{" "}
                 <a 
