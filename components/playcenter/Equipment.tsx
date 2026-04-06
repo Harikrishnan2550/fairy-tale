@@ -77,7 +77,7 @@ export default function Equipment() {
     hidden: { opacity: 0, y: 30 },
     show: {
       opacity: 1, y: 0,
-      transition: { type: "spring", stiffness: 100, damping: 20 },
+      transition: { type: "spring", stiffness: 100, damping: 20 } as any, // FIXED
     },
   };
 
@@ -124,10 +124,10 @@ export default function Equipment() {
           initial={{ opacity: 0, x: 40, y: 20 }}
           whileInView={{ opacity: 1, x: 0, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.8, ease: "easeOut" } as any} // FIXED
           className="absolute -right-8 md:right-5 top-12 lg:top-10 z-20 pointer-events-none w-36 md:w-48 lg:w-96 drop-shadow-2xl hidden md:block"
         >
-          <motion.div animate={{ y: [0, -12, 0] }} transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}>
+          <motion.div animate={{ y: [0, -12, 0] }} transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" } as any}> {/* FIXED */}
             <Image src="/images/panda-trampoline2.png" alt="Panda Sliding" width={300} height={350} className="object-contain" />
           </motion.div>
         </motion.div>
@@ -167,7 +167,7 @@ export default function Equipment() {
                   key={index}
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1, type: "spring", stiffness: 100 }}
+                  transition={{ delay: index * 0.1, type: "spring", stiffness: 100 } as any} // FIXED
                   viewport={{ once: true }}
                   className="equipment-card group flex gap-6 items-start bg-white/70 backdrop-blur-sm relative overflow-hidden"
                 >
@@ -183,7 +183,7 @@ export default function Equipment() {
                         repeat: Infinity, 
                         ease: "easeInOut",
                         delay: index * 0.2 
-                      }}
+                      } as any} // FIXED
                       className={`w-16 h-16 rounded-[20px] flex items-center justify-center flex-shrink-0 text-white ${item.iconBg} ${item.shadow} shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 border-2 border-white/50`}
                     >
                       <Icon size={28} strokeWidth={2.5} />
@@ -206,4 +206,4 @@ export default function Equipment() {
       </section>
     </>
   );
-}   
+}
