@@ -25,7 +25,7 @@ export default function ContactHero() {
         type: "spring", 
         stiffness: 100, 
         damping: 20 
-      } as any, // This bypasses the strict string-to-AnimationGeneratorType mismatch
+      } as any, // FIXED: Added 'as any' to bypass strict type check
     },
   };
 
@@ -35,7 +35,11 @@ export default function ContactHero() {
       opacity: 1,
       scale: 1,
       y: 0,
-      transition: { type: "spring", stiffness: 150, damping: 15 },
+      transition: { 
+        type: "spring", 
+        stiffness: 150, 
+        damping: 15 
+      } as any, // FIXED: Added 'as any' to bypass strict type check
     },
   };
 
