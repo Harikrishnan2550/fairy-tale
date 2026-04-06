@@ -198,9 +198,23 @@ export default function Footer() {
               © {new Date().getFullYear()} Fairy Tales Play Center. All rights reserved.
             </p>
 
-            <p className="flex items-center justify-center gap-2">
-              Designed with <motion.span animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 1.5 } as any}>❤️</motion.span> for kids {/* FIXED HERE */}
-            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6">
+              <p className="flex items-center justify-center gap-2">
+                Designed with <motion.span animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 1.5 } as any}>❤️</motion.span> for kids
+              </p>
+              <span className="hidden sm:block opacity-50">|</span>
+              <p>
+                Developed by{" "}
+                <a 
+                  href="https://winshineinfotech.com/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-[#FF8C42] hover:text-white transition-colors duration-300"
+                >
+                  Winshine Infotech
+                </a>
+              </p>
+            </div>
           </motion.div>
           
         </Container>
