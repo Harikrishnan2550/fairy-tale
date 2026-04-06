@@ -37,7 +37,7 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { opacity: 0, x: 40 },
-  show: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 300, damping: 28 } },
+  show: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 300, damping: 28 } as any }, // FIXED HERE
 };
 
 export default function MobileMenu({ open, setOpen }: Props) {
@@ -187,7 +187,7 @@ export default function MobileMenu({ open, setOpen }: Props) {
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 26, stiffness: 200 }}
+              transition={{ type: "spring", damping: 26, stiffness: 200 } as any} // FIXED HERE
               className="mobile-menu-drawer fixed top-3 right-3 bottom-3 w-[300px] z-[120] rounded-[28px] flex flex-col overflow-hidden shadow-2xl"
             >
               {/* Floating particles */}

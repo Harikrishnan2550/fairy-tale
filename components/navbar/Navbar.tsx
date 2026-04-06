@@ -151,7 +151,7 @@ export default function Navbar() {
                 animate={{ y: [0, -4, 0] }}
                 transition={{
                   y: { duration: 3.5, repeat: Infinity, ease: "easeInOut" },
-                }}
+                } as any} // FIXED HERE
               >
                 <Image
                   src="/images/logo.png"
@@ -193,7 +193,7 @@ export default function Navbar() {
                           type: "spring",
                           stiffness: 400,
                           damping: 32,
-                        }}
+                        } as any} // FIXED HERE
                       />
                     )}
                     <span className="relative z-10">{link.name}</span>
