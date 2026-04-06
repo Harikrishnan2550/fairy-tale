@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import Image from "next/image";
-// FIXED: Swapped Dribbble for Trophy!
 import { Rocket, Target, Mountain, Zap, Smile, Trophy } from "lucide-react";
 
 // PREMIUM UPGRADE: Swapped standard emojis for professional icons
@@ -62,7 +61,7 @@ const activities = [
     title: "Basketball Activity", 
     desc: "Fun sports activity that keeps kids active and engaged.", 
     image: "/images/activities/basketball.png", 
-    icon: Trophy, // FIXED HERE
+    icon: Trophy,
     cardBg: "bg-gradient-to-br from-orange-50 to-orange-100",
     borderColor: "border-orange-200",
     badgeColor: "bg-orange-500 text-white shadow-orange-500/40",
@@ -87,7 +86,7 @@ export default function PlayActivities() {
     show: {
       opacity: 1,
       y: 0,
-      transition: { type: "spring", stiffness: 100, damping: 20 },
+      transition: { type: "spring", stiffness: 100, damping: 20 } as any, // FIXED
     },
   };
 
@@ -143,10 +142,10 @@ export default function PlayActivities() {
           initial={{ opacity: 0, x: -60, y: -20 }}
           whileInView={{ opacity: 1, x: 0, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1, ease: "easeOut" }}
+          transition={{ duration: 1, ease: "easeOut" } as any} // FIXED
           className="absolute -left-10 md:-left-4 -top-10 md:-top-10 z-20 pointer-events-none w-[380px] md:w-80 lg:w-[450px] drop-shadow-2xl"
         >
-          <motion.div animate={{ y: [0, 15, 0], rotate: [0, 5, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}>
+          <motion.div animate={{ y: [0, 15, 0], rotate: [0, 5, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" } as any}>
             <Image src="/images/panda-zipline.png" alt="Panda on Zipline" width={850} height={600} className="object-contain" />
           </motion.div>
         </motion.div>
@@ -156,10 +155,10 @@ export default function PlayActivities() {
           initial={{ opacity: 0, x: 60, scale: 0.8 }}
           whileInView={{ opacity: 1, x: 0, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" } as any} // FIXED
           className="absolute -right-1 md:-right-1 top-1 z-20 pointer-events-none w-64 md:w-64 lg:w-[550px] drop-shadow-2xl md:block hidden"
         >
-          <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}>
+          <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" } as any}>
             <Image src="/images/panda-playing.png" alt="Panda Jumping on Trampoline" width={800} height={450} className="object-contain" />
           </motion.div>
         </motion.div>
@@ -203,7 +202,7 @@ export default function PlayActivities() {
                   key={index}
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1, type: "spring", stiffness: 100 }}
+                  transition={{ delay: index * 0.1, type: "spring", stiffness: 100 } as any} // FIXED
                   viewport={{ once: true }}
                   whileHover={{ scale: 1.03, y: -8, boxShadow: "0 30px 60px -15px rgba(180, 50, 10, 0.4)" }}
                   whileTap={{ scale: 0.98 }}
@@ -233,8 +232,8 @@ export default function PlayActivities() {
                         duration: 3, 
                         repeat: Infinity, 
                         ease: "easeInOut",
-                        delay: index * 0.2 // Stagger the floating effect
-                      }}
+                        delay: index * 0.2 
+                      } as any} // FIXED
                       className={`absolute top-4 right-4 w-14 h-14 rounded-full ${item.badgeColor} shadow-lg flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 border border-white/50 z-20`}
                     >
                       <Icon size={26} strokeWidth={2.5} />

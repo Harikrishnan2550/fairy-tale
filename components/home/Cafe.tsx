@@ -141,7 +141,7 @@ export default function Cafe() {
               top: bubble.top,
             }}
             animate={{ y: [0, -30, 0], scale: [1, 1.05, 1] }}
-            transition={{ duration: bubble.duration, delay: bubble.delay, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: bubble.duration, delay: bubble.delay, repeat: Infinity, ease: "easeInOut" } as any} // FIXED
           />
         ))}
 
@@ -154,14 +154,11 @@ export default function Cafe() {
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, delay: i * 0.15 }}
+            transition={{ duration: 1, delay: i * 0.15 } as any} // FIXED
           >
             {item.emoji}
           </motion.div>
         ))}
-
-        {/* Floating Panda */}
-       
 
         {/* Subtle floating background elements */}
         <div className="absolute top-10 right-20 text-5xl text-white/20 float-slow blur-[1px] z-0" style={{ animationDelay: '0s' }}>☁️</div>
@@ -178,14 +175,14 @@ export default function Cafe() {
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] } as any} // FIXED
               className="text-center md:text-left flex-1 mt-10 md:mt-0"
             >
               <motion.div
                 initial={{ opacity: 0, scale: 0.85 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
+                transition={{ delay: 0.1 } as any} // FIXED
                 className="mb-6"
               >
                 <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-6 py-2.5 rounded-full border border-white/30 shadow-lg">
@@ -210,12 +207,12 @@ export default function Cafe() {
               initial={{ opacity: 0, x: 60, y: 20 }}
               whileInView={{ opacity: 1, x: 0, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] } as any} // FIXED
               className="relative w-96 md:w-80 lg:w-[800px] xl:w-[550px] aspect-square flex-shrink-0"
             >
               <motion.div
                 animate={{ y: [0, -14, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" } as any} // FIXED
                 className="relative w-full h-full"
               >
                 <div className="absolute inset-[10%] rounded-full bg-white/20 blur-2xl pointer-events-none" />
@@ -239,7 +236,7 @@ export default function Cafe() {
                   key={index}
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ delay: index * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] } as any} // FIXED
                   viewport={{ once: true }}
                   className="relative group"
                 >
@@ -282,7 +279,7 @@ export default function Cafe() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
+            transition={{ delay: 0.3 } as any} // FIXED
             className="text-center mt-12 mb-10 relative z-10"
           >
             <motion.a

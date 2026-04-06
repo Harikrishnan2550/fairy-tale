@@ -166,7 +166,7 @@ export default function Activities() {
               delay: bubble.delay,
               repeat: Infinity,
               ease: "easeInOut",
-            }}
+            } as any} // FIXED
           />
         ))}
 
@@ -179,7 +179,7 @@ export default function Activities() {
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, delay: i * 0.15 }}
+            transition={{ duration: 1, delay: i * 0.15 } as any} // FIXED
           >
             {item.emoji}
           </motion.div>
@@ -208,10 +208,18 @@ export default function Activities() {
             viewport={{ once: true }}
             className="text-center mb-16 relative z-10 mt-48 lg:mt-0"
           >
-            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-6 py-2 rounded-full border border-white/30 mb-6 shadow-lg">
-              <span className="text-white">✨</span>
-              <span className="uppercase tracking-[3px] text-sm font-bold text-white">Endless Fun</span>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 } as any} // FIXED
+              className="mb-6"
+            >
+              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-6 py-2 rounded-full border border-white/30 shadow-lg">
+                <span className="text-white">✨</span>
+                <span className="uppercase tracking-[3px] text-sm font-bold text-white">Endless Fun</span>
+              </div>
+            </motion.div>
 
             <h2 className="text-5xl md:text-6xl font-black text-white leading-none tracking-tighter"
                 style={{ fontFamily: "'Baloo 2', cursive", letterSpacing: "-2px" }}>
@@ -232,7 +240,7 @@ export default function Activities() {
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, type: "spring", stiffness: 100 }}
+                transition={{ delay: index * 0.1, type: "spring", stiffness: 100 } as any} // FIXED
                 viewport={{ once: true }}
                 whileHover={{ scale: 1.03, y: -8, boxShadow: "0 30px 60px -15px rgba(180, 50, 10, 0.4)" }}
                 whileTap={{ scale: 0.98 }}

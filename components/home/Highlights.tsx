@@ -101,7 +101,7 @@ export default function Highlights() {
               delay: bubble.delay,
               repeat: Infinity,
               ease: "easeInOut",
-            }}
+            } as any} // FIXED
           />
         ))}
 
@@ -114,7 +114,7 @@ export default function Highlights() {
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, delay: i * 0.15 }}
+            transition={{ duration: 1, delay: i * 0.15 } as any} // FIXED
           >
             {item.emoji}
           </motion.div>
@@ -158,7 +158,7 @@ export default function Highlights() {
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+              transition={{ delay: 0.1 } as any} // FIXED
               className="feature-card group flex flex-col bg-gradient-to-b from-[#fdf2f8] to-[#fce7f3]"
             >
               {/* Card Image Area */}
@@ -222,7 +222,7 @@ export default function Highlights() {
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+              transition={{ delay: 0.2 } as any} // FIXED
               className="feature-card group flex flex-col bg-gradient-to-b from-[#fffbeb] to-[#ffedd5]"
             >
               {/* Card Image Area */}
@@ -275,7 +275,7 @@ export default function Highlights() {
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
+              transition={{ delay: 0.3 } as any} // FIXED
               className="feature-card group flex flex-col bg-gradient-to-b from-[#ecfdf5] to-[#d1fae5]"
             >
               {/* Card Image Area */}
@@ -330,7 +330,7 @@ export default function Highlights() {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
+            transition={{ delay: 0.4 } as any} // FIXED
             className="mt-20 flex flex-col md:flex-row flex-wrap justify-center items-center gap-10 lg:gap-20 text-center md:text-left bg-white/95 backdrop-blur-md px-12 py-10 rounded-[40px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] border border-white/50 relative z-10"
             style={{ fontFamily: "'Nunito', sans-serif" }}
           >

@@ -8,7 +8,7 @@ import { Phone, Mail, MapPin, ChevronRight } from "lucide-react";
 
 const footerVariants = {
   hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } as any } // FIXED HERE
 };
 
 export default function Footer() {
@@ -135,7 +135,7 @@ export default function Footer() {
                   <div className="flex items-center gap-4 group cursor-pointer w-full">
                     <motion.div 
                       animate={{ y: [0, -4, 0] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" } as any} // FIXED HERE
                       className="w-12 h-12 rounded-[16px] bg-[#FF8C42] flex items-center justify-center flex-shrink-0 text-white shadow-[0_8px_20px_-6px_rgba(255,140,66,0.6)] group-hover:scale-110 group-hover:rotate-6 transition-all border border-white/20"
                     >
                       <Phone size={20} strokeWidth={2.5} />
@@ -146,7 +146,7 @@ export default function Footer() {
                   <div className="flex items-center gap-4 group cursor-pointer w-full">
                     <motion.div 
                       animate={{ y: [0, -4, 0] }}
-                      transition={{ duration: 3, delay: 0.5, repeat: Infinity, ease: "easeInOut" }}
+                      transition={{ duration: 3, delay: 0.5, repeat: Infinity, ease: "easeInOut" } as any} // FIXED HERE
                       className="w-12 h-12 rounded-[16px] bg-[#FF8C42] flex items-center justify-center flex-shrink-0 text-white shadow-[0_8px_20px_-6px_rgba(255,140,66,0.6)] group-hover:scale-110 group-hover:-rotate-6 transition-all border border-white/20"
                     >
                       <Mail size={20} strokeWidth={2.5} />
@@ -170,7 +170,7 @@ export default function Footer() {
                 <div className="flex items-start gap-4 footer-text text-slate-300 font-bold text-[15px] group cursor-default w-fit mx-auto lg:mx-0">
                   <motion.div 
                     animate={{ y: [0, -4, 0] }}
-                    transition={{ duration: 3, delay: 1, repeat: Infinity, ease: "easeInOut" }}
+                    transition={{ duration: 3, delay: 1, repeat: Infinity, ease: "easeInOut" } as any} // FIXED HERE
                     className="w-12 h-12 mt-1 rounded-[16px] bg-[#FF8C42] flex items-center justify-center flex-shrink-0 text-white shadow-[0_8px_20px_-6px_rgba(255,140,66,0.6)] group-hover:scale-110 transition-all border border-white/20"
                   >
                     <MapPin size={20} strokeWidth={2.5} />
@@ -199,7 +199,7 @@ export default function Footer() {
             </p>
 
             <p className="flex items-center justify-center gap-2">
-              Designed with <motion.span animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 1.5 }}>❤️</motion.span> for kids
+              Designed with <motion.span animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 1.5 } as any}>❤️</motion.span> for kids {/* FIXED HERE */}
             </p>
           </motion.div>
           

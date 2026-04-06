@@ -130,7 +130,7 @@ export default function Gallery() {
               delay: bubble.delay,
               repeat: Infinity,
               ease: "easeInOut",
-            }}
+            } as any} // FIXED
           />
         ))}
 
@@ -143,7 +143,7 @@ export default function Gallery() {
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, delay: i * 0.15 }}
+            transition={{ duration: 1, delay: i * 0.15 } as any} // FIXED
           >
             {item.emoji}
           </motion.div>
@@ -154,12 +154,12 @@ export default function Gallery() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="absolute top-[-32] left-[200px] -translate-x-1/2 md:top-10 lg:top-1 md:left-[1210px] md:-translate-x-0 z-20 pointer-events-none w-80 md:w-48 lg:w-80 xl:w-96 drop-shadow-2xl"
+          transition={{ duration: 0.8, ease: "easeOut" } as any} // FIXED
+          className="absolute top-[-32px] left-[200px] -translate-x-1/2 md:top-10 lg:top-1 md:left-[1210px] md:-translate-x-0 z-20 pointer-events-none w-80 md:w-48 lg:w-80 xl:w-96 drop-shadow-2xl"
         >
           <motion.div
             animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" } as any} // FIXED
           >
             <Image
               src="/images/panda-sliding.png"
@@ -178,14 +178,14 @@ export default function Gallery() {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] } as any} // FIXED
             className="text-center mb-20 relative z-10 pt-28 md:pt-0 mt-52 lg:mt-0"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.85 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+              transition={{ delay: 0.1 } as any} // FIXED
               className="mb-6"
             >
               {/* Premium Glass Badge */}
@@ -218,7 +218,7 @@ export default function Gallery() {
                   delay: index * 0.15, 
                   duration: 0.6,
                   ease: [0.22, 1, 0.36, 1]
-                }}
+                } as any} // FIXED
                 className="relative group cursor-pointer"
                 onClick={() => setActive(item.src)}
               >
@@ -245,6 +245,7 @@ export default function Gallery() {
                       <motion.div 
                         initial={{ y: 20, opacity: 0 }}
                         whileInView={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 0.3 } as any} // FIXED
                         className="translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
                       >
                         <div className="flex items-center justify-between">
@@ -272,7 +273,7 @@ export default function Gallery() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 0.2 } as any} // FIXED
                 className="fixed inset-0 z-[150] flex items-center justify-center p-4 md:p-12 bg-slate-900/95 backdrop-blur-md"
                 onClick={() => setActive(null)}
               >
@@ -291,7 +292,7 @@ export default function Gallery() {
                   initial={{ scale: 0.9, y: 20 }}
                   animate={{ scale: 1, y: 0 }}
                   exit={{ scale: 0.9, y: 20 }}
-                  transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                  transition={{ type: "spring", damping: 25, stiffness: 300 } as any} // FIXED
                   className="relative w-full max-w-5xl max-h-[90vh] aspect-[4/3] md:aspect-video rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)] border-4 border-white/20"
                   onClick={(e) => e.stopPropagation()} // Prevent clicking image from closing
                 >

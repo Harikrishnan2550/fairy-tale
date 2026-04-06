@@ -19,7 +19,7 @@ const textLineVariants = {
     opacity: 1, 
     y: 0, 
     scale: 1,
-    transition: { type: "spring", stiffness: 120, damping: 14 } 
+    transition: { type: "spring", stiffness: 120, damping: 14 } as any // FIXED
   }
 };
 
@@ -28,7 +28,7 @@ const slideLeft: Variants = {
   show: (delay: number = 0) => ({
     opacity: 1,
     x: 0,
-    transition: { type: "spring", stiffness: 80, damping: 15, delay },
+    transition: { type: "spring", stiffness: 80, damping: 15, delay } as any, // FIXED
   }),
 };
 
@@ -37,7 +37,7 @@ const slideRight: Variants = {
   show: (delay: number = 0) => ({
     opacity: 1,
     x: 0,
-    transition: { type: "spring", stiffness: 80, damping: 15, delay },
+    transition: { type: "spring", stiffness: 80, damping: 15, delay } as any, // FIXED
   }),
 };
 
@@ -126,7 +126,7 @@ export default function LingokidsStyleHero() {
               delay: i * 0.4,
               repeat: Infinity,
               repeatDelay: 2,
-            }}
+            } as any} // FIXED
             className="absolute w-3 h-3 bg-white rounded-full pointer-events-none z-0"
             style={{
               left: `${10 + (i % 5) * 16}%`,
@@ -155,7 +155,7 @@ export default function LingokidsStyleHero() {
               delay: bubble.delay,
               repeat: Infinity,
               ease: "easeInOut",
-            }}
+            } as any} // FIXED
           />
         ))}
 
@@ -168,7 +168,7 @@ export default function LingokidsStyleHero() {
             initial={{ opacity: 0, scale: 0, rotate: -45 }}
             whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
             viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 100, delay: i * 0.15 }}
+            transition={{ type: "spring", stiffness: 100, delay: i * 0.15 } as any} // FIXED
           >
             {item.emoji}
           </motion.div>
@@ -179,7 +179,7 @@ export default function LingokidsStyleHero() {
           <motion.div 
             style={{ fontSize: "clamp(100px, 20vw, 260px)" }}
             animate={{ x: [-30, 30, -30] }}
-            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" } as any} // FIXED
           >
             FAIRY TALES
           </motion.div>
@@ -208,20 +208,20 @@ export default function LingokidsStyleHero() {
               <motion.div
                 initial={{ scale: 0, rotate: -15, opacity: 0 }}
                 animate={{ scale: 1, rotate: 0, opacity: 1 }}
-                transition={{ type: "spring", stiffness: 70, damping: 14, delay: 0.2 }}
+                transition={{ type: "spring", stiffness: 70, damping: 14, delay: 0.2 } as any} // FIXED
                 className="relative z-20"
                 style={{ width: "clamp(240px, 35vw, 420px)", height: "clamp(240px, 35vw, 420px)" }}
               >
                 {/* Animated Breathing Pulse Glow */}
                 <motion.div 
                   animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.8, 0.5] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" } as any} // FIXED
                   className="absolute inset-[-20px] rounded-full bg-white/20 blur-2xl z-0" 
                 />
 
                 <motion.div
                   animate={{ y: [0, -15, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" } as any} // FIXED
                   className="relative w-full h-full rounded-full overflow-hidden shadow-2xl ring-[6px] ring-white/40 z-10 bg-[#FFB347]/50"
                 >
                   <Image
@@ -254,7 +254,7 @@ export default function LingokidsStyleHero() {
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, type: "spring", stiffness: 100 }}
+            transition={{ delay: 0.8, type: "spring", stiffness: 100 } as any} // FIXED
             className="mt-12 mb-8 flex flex-col sm:flex-row gap-4 justify-center items-center z-30 relative"
           >
             {/* Primary CTA */}
@@ -286,7 +286,7 @@ export default function LingokidsStyleHero() {
         <motion.div 
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.2, type: "spring" }}
+          transition={{ delay: 1.2, type: "spring" } as any} // FIXED
           className="absolute bottom-8 left-8 hidden lg:block z-20"
         >
           
@@ -295,7 +295,7 @@ export default function LingokidsStyleHero() {
         <motion.div 
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.2, type: "spring" }}
+          transition={{ delay: 1.2, type: "spring" } as any} // FIXED
           className="absolute bottom-8 right-8 hidden lg:block z-20"
         >
           

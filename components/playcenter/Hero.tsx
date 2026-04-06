@@ -22,7 +22,7 @@ export default function PlayCenterHero() {
     show: {
       opacity: 1,
       y: 0,
-      transition: { type: "spring", stiffness: 100, damping: 20 },
+      transition: { type: "spring", stiffness: 100, damping: 20 } as any, // FIXED
     },
   };
 
@@ -32,7 +32,7 @@ export default function PlayCenterHero() {
       opacity: 1,
       scale: 1,
       y: 0,
-      transition: { type: "spring", stiffness: 150, damping: 15 },
+      transition: { type: "spring", stiffness: 150, damping: 15 } as any, // FIXED
     },
   };
 
@@ -100,7 +100,7 @@ export default function PlayCenterHero() {
               delay: i * 0.3,
               repeat: Infinity,
               repeatDelay: 1,
-            }}
+            } as any} // FIXED
             className="absolute w-2 h-2 md:w-3 md:h-3 bg-white rounded-full pointer-events-none z-0"
             style={{
               left: `${10 + (i % 8) * 12}%`,

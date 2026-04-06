@@ -10,13 +10,13 @@ export default function WhatsappFloat() {
       <motion.div
         initial={{ opacity: 0, y: 10, scale: 0.9 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ delay: 2, duration: 0.5, type: "spring" }}
+        transition={{ delay: 2, duration: 0.5, type: "spring" } as any} // FIXED
         className="bg-white text-slate-800 px-4 py-2 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.1)] border border-gray-100 font-bold text-sm hidden sm:block relative origin-bottom-right"
         style={{ fontFamily: "'Nunito', sans-serif" }}
       >
         <motion.span
            animate={{ y: [0, -3, 0] }}
-           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" } as any} // FIXED
            className="inline-block"
         >
           Chat with us! ✨

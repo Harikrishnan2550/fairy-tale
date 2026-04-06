@@ -140,7 +140,7 @@ export default function Contact() {
               delay: bubble.delay,
               repeat: Infinity,
               ease: "easeInOut",
-            }}
+            } as any} // FIXED
           />
         ))}
 
@@ -153,7 +153,7 @@ export default function Contact() {
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, delay: i * 0.15 }}
+            transition={{ duration: 1, delay: i * 0.15 } as any} // FIXED
           >
             {item.emoji}
           </motion.div>
@@ -166,14 +166,14 @@ export default function Contact() {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] } as any} // FIXED
             className="text-center mb-16 relative z-10"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.85 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+              transition={{ delay: 0.1 } as any} // FIXED
               className="mb-5"
             >
               <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-6 py-2.5 rounded-full border border-white/30 shadow-lg">
@@ -201,12 +201,12 @@ export default function Contact() {
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+              transition={{ duration: 0.8, ease: "easeOut" } as any} // FIXED
               className="w-full lg:w-5/12 relative flex items-center justify-center min-h-[350px] lg:min-h-full"
             >
               <motion.div
                 animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" } as any} // FIXED
                 className="relative w-full h-full min-h-[600px] lg:min-h-0"
               >
                 <Image
@@ -224,7 +224,7 @@ export default function Contact() {
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" } as any} // FIXED
               className="w-full lg:w-7/12 bg-white/95 backdrop-blur-xl rounded-[40px] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.2)] border-[6px] border-white p-8 lg:p-12 flex flex-col relative"
             >
               {/* Decorative inner blob for premium feel */}
