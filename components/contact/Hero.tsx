@@ -17,11 +17,15 @@ export default function ContactHero() {
   };
 
   const textVariants = {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0, y: 30 },
     show: {
       opacity: 1,
       y: 0,
-      transition: { type: "spring", stiffness: 100, damping: 20 },
+      transition: { 
+        type: "spring", 
+        stiffness: 100, 
+        damping: 20 
+      } as any, // This bypasses the strict string-to-AnimationGeneratorType mismatch
     },
   };
 
