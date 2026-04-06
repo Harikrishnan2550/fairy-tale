@@ -257,8 +257,9 @@ export default function LingokidsStyleHero() {
             transition={{ delay: 0.8, type: "spring", stiffness: 100 } as any} // FIXED
             className="mt-12 mb-8 flex flex-col sm:flex-row gap-4 justify-center items-center z-30 relative"
           >
-            {/* Primary CTA */}
-            <motion.button
+            {/* Primary CTA - CHANGED TO LINK TO /contact */}
+            <motion.a
+              href="/contact"
               whileHover={{ scale: 1.05, rotate: -2 }}
               whileTap={{ scale: 0.95 }}
               className="bg-white text-[#FF6B35] font-extrabold text-base md:text-lg px-8 py-3.5 rounded-full shadow-[0_10px_30px_rgba(255,255,255,0.35)] flex items-center justify-center gap-3 transition-transform"
@@ -266,7 +267,7 @@ export default function LingokidsStyleHero() {
             >
               <Calendar size={20} strokeWidth={2.5} />
               Book Your Visit
-            </motion.button>
+            </motion.a>
 
             {/* Secondary CTA */}
             <motion.a
