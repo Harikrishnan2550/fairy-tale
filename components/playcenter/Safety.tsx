@@ -62,7 +62,7 @@ export default function Safety() {
     hidden: { opacity: 0, y: 30 },
     show: {
       opacity: 1, y: 0,
-      transition: { type: "spring", stiffness: 100, damping: 20 },
+      transition: { type: "spring", stiffness: 100, damping: 20 } as any, // FIXED HERE
     },
   };
 
@@ -110,10 +110,10 @@ export default function Safety() {
           initial={{ opacity: 0, x: -40, y: 20 }}
           whileInView={{ opacity: 1, x: 0, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.8, ease: "easeOut" } as any} // FIXED HERE
           className="absolute -left-16 md:-left-20 -top-2 lg:top-16 z-20 pointer-events-none w-60 md:w-56 lg:w-72 drop-shadow-2xl "
         >
-          <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}>
+          <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" } as any}>
             <Image src="/images/image_3.png" alt="Safety Supervisor Panda" width={300} height={350} className="object-contain" />
           </motion.div>
         </motion.div>
@@ -146,7 +146,7 @@ export default function Safety() {
                   key={index}
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1, type: "spring", stiffness: 100 }}
+                  transition={{ delay: index * 0.1, type: "spring", stiffness: 100 } as any} // FIXED HERE
                   viewport={{ once: true }}
                   className={`safety-card group bg-white/70 backdrop-blur-sm relative overflow-hidden`}
                 >
@@ -162,7 +162,7 @@ export default function Safety() {
                         repeat: Infinity, 
                         ease: "easeInOut",
                         delay: index * 0.2 
-                      }}
+                      } as any} // FIXED HERE
                       className={`w-20 h-20 mb-8 rounded-[24px] flex items-center justify-center text-white ${item.iconBg} ${item.shadow} shadow-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 border-2 border-white/50`}
                     >
                       <Icon size={36} strokeWidth={2.5} />
