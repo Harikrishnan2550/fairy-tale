@@ -114,7 +114,7 @@ export default function ContactInfo() {
                   rel={item.isExternal ? "noopener noreferrer" : undefined}
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.15, type: "spring", stiffness: 100 } as any} // FIXED
+                  transition={{ delay: index * 0.15, type: "spring", stiffness: 100 } as any} 
                   viewport={{ once: true }}
                   className="info-card group bg-white/70 backdrop-blur-sm block"
                 >
@@ -130,7 +130,7 @@ export default function ContactInfo() {
                         repeat: Infinity, 
                         ease: "easeInOut",
                         delay: index * 0.2 
-                      } as any} // FIXED
+                      } as any} 
                       className={`
                         w-20 h-20 mb-8 rounded-[24px] flex items-center justify-center text-white
                         ${item.iconBg} ${item.shadow} shadow-xl 
@@ -154,7 +154,7 @@ export default function ContactInfo() {
                       {item.desc}
                     </p>
                   </div>
-                </motion.div>
+                </motion.a> /* FIXED: This was previously </motion.div> by mistake! */
               );
             })}
           </div>
@@ -164,7 +164,7 @@ export default function ContactInfo() {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" } as any} // FIXED
+            transition={{ duration: 0.8, ease: "easeOut" } as any} 
             className="w-full max-w-4xl mx-auto bg-white/80 backdrop-blur-xl rounded-[40px] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.2)] border-[6px] border-white p-8 md:p-12 lg:p-16 flex flex-col relative overflow-hidden"
           >
             {/* Decorative inner blob for premium feel */}
