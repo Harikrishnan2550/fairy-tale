@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { X, Phone, MapPin } from "lucide-react";
+import { X, Phone, MapPin, Home, Tent, Coffee, MessageSquare } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 type Props = {
@@ -23,11 +23,12 @@ const FacebookIcon = () => (
   </svg>
 );
 
+// PREMIUM UPGRADE: Added vibrant background colors and glowing shadows to each icon
 const menuItems = [
-  { name: "Home",        href: "/",            emoji: "🏠" },
-  { name: "Play Center", href: "/play-center", emoji: "🎪" },
-  { name: "Cafe",        href: "/cafe",        emoji: "☕" },
-  { name: "Contact",     href: "/contact",     emoji: "📍" },
+  { name: "Home",        href: "/",            icon: Home,          bgClass: "bg-blue-500", shadowClass: "shadow-blue-500/40" },
+  { name: "Play Center", href: "/play-center", icon: Tent,          bgClass: "bg-pink-500", shadowClass: "shadow-pink-500/40" },
+  { name: "Cafe",        href: "/cafe",        icon: Coffee,        bgClass: "bg-amber-500", shadowClass: "shadow-amber-500/40" },
+  { name: "Contact",     href: "/contact",     icon: MessageSquare, bgClass: "bg-purple-500", shadowClass: "shadow-purple-500/40" },
 ];
 
 const containerVariants = {
@@ -67,7 +68,7 @@ export default function MobileMenu({ open, setOpen }: Props) {
           letter-spacing: -0.5px;
           display: flex;
           align-items: center;
-          gap: 14px;
+          gap: 16px;
           padding: 11px 14px;
           border-radius: 18px;
           transition: background 0.2s ease;
@@ -79,17 +80,17 @@ export default function MobileMenu({ open, setOpen }: Props) {
           background: rgba(255,255,255,0.18);
         }
 
+        /* Removed hardcoded background so dynamic Tailwind classes can take over */
         .menu-nav-emoji {
-          width: 46px;
-          height: 46px;
-          background: rgba(255,255,255,0.22);
-          border-radius: 14px;
+          width: 48px;
+          height: 48px;
+          border-radius: 16px;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 22px;
+          color: white;
           flex-shrink: 0;
-          border: 1.5px solid rgba(255,255,255,0.3);
+          border: 1.5px solid rgba(255,255,255,0.4);
         }
 
         .menu-divider {
@@ -225,15 +226,20 @@ export default function MobileMenu({ open, setOpen }: Props) {
                 animate="show"
                 className="flex flex-col px-3 mt-3 flex-grow relative z-10"
               >
-                {menuItems.map((item) => (
-                  <motion.div key={item.name} variants={itemVariants}>
-                    <Link href={item.href} onClick={() => setOpen(false)} className="menu-nav-link">
-                      <span className="menu-nav-emoji">{item.emoji}</span>
-                      {item.name}
-                    </Link>
-                    <div className="menu-divider" />
-                  </motion.div>
-                ))}
+                {menuItems.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <motion.div key={item.name} variants={itemVariants}>
+                      <Link href={item.href} onClick={() => setOpen(false)} className="menu-nav-link group">
+                        <span className={`menu-nav-emoji ${item.bgClass} shadow-lg ${item.shadowClass} group-hover:scale-105 group-active:scale-95 transition-transform`}>
+                          <Icon size={24} strokeWidth={2.5} />
+                        </span>
+                        {item.name}
+                      </Link>
+                      <div className="menu-divider" />
+                    </motion.div>
+                  );
+                })}
               </motion.nav>
 
               {/* Bottom CTA */}

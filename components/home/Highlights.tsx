@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ArrowRight, ShieldCheck, Coffee, Castle, CupSoda, Tent, PartyPopper } from "lucide-react";
+import { ArrowRight, ShieldCheck, Coffee, Castle, CupSoda, Tent, PartyPopper, Star, Sparkles } from "lucide-react";
 
 // Pre-defined values for magical background bubbles
 const bubbles = [
@@ -127,17 +127,14 @@ export default function Highlights() {
 
         <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
           
-          {/* Section Header */}
+          {/* Section Header - NOW LEFT ALIGNED */}
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-20 relative z-10"
+            className="text-left mb-16 md:mb-20 relative z-10"
           >
-            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/40 px-6 py-2.5 rounded-full shadow-lg mb-6">
-              <span className="text-white">✦</span>
-              <span className="uppercase tracking-[4px] text-[13px] font-extrabold text-white">Our World</span>
-            </div>
+          
 
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tighter text-white mb-6 drop-shadow-sm" 
                 style={{ fontFamily: "'Baloo 2', cursive" }}>
@@ -145,7 +142,7 @@ export default function Highlights() {
               <span className="text-[#ffe4b5]">Peace for Parents.</span>
             </h2>
 
-            <p className="text-xl md:text-2xl text-white/95 max-w-2xl mx-auto font-bold drop-shadow-sm" style={{ fontFamily: "'Nunito', sans-serif" }}>
+            <p className="text-xl md:text-2xl text-white/95 max-w-2xl font-bold drop-shadow-sm" style={{ fontFamily: "'Nunito', sans-serif" }}>
               Three beautiful spaces. One unforgettable experience.
             </p>
           </motion.div>
@@ -281,7 +278,7 @@ export default function Highlights() {
               {/* Card Image Area */}
               <div className="relative h-64 w-full bg-slate-100 overflow-hidden">
                 <Image 
-                  src="/images/outdoor.png" /* You can change this to a specific party image later! */
+                  src="/images/outdoor.png" 
                   alt="Outdoor Party Space" 
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-[1.5s] ease-out"
@@ -325,18 +322,18 @@ export default function Highlights() {
 
           </div>
 
-          {/* Premium Trust Bar */}
+          {/* Premium Trust Bar - NOW FULLY LEFT ALIGNED WITH PREMIUM ICONS */}
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 } as any} // FIXED
-            className="mt-20 flex flex-col md:flex-row flex-wrap justify-center items-center gap-10 lg:gap-20 text-center md:text-left bg-white/95 backdrop-blur-md px-12 py-10 rounded-[40px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] border border-white/50 relative z-10"
+            className="mt-20 flex flex-col md:flex-row flex-wrap justify-start md:justify-center items-start md:items-center gap-8 lg:gap-20 bg-white/95 backdrop-blur-md px-8 md:px-12 py-10 rounded-[40px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] border border-white/50 relative z-10"
             style={{ fontFamily: "'Nunito', sans-serif" }}
           >
-            <div className="flex items-center gap-5">
-              <div className="w-16 h-16 bg-blue-50/80 rounded-2xl flex items-center justify-center shadow-sm border border-blue-100">
-                <span className="text-3xl">🛡️</span>
+            <div className="flex items-center gap-5 text-left w-full md:w-auto">
+              <div className="w-16 h-16 bg-blue-50/80 rounded-2xl flex items-center justify-center shadow-sm border border-blue-100 flex-shrink-0">
+                <ShieldCheck className="text-blue-500" size={32} strokeWidth={2.5} />
               </div>
               <div>
                 <div className="font-extrabold text-xl text-slate-800 mb-0.5">100% Supervised</div>
@@ -346,9 +343,9 @@ export default function Highlights() {
 
             <div className="hidden md:block w-[2px] h-16 bg-slate-100 rounded-full"></div>
 
-            <div className="flex items-center gap-5">
-              <div className="w-16 h-16 bg-purple-50/80 rounded-2xl flex items-center justify-center shadow-sm border border-purple-100">
-                <span className="text-3xl">🌟</span>
+            <div className="flex items-center gap-5 text-left w-full md:w-auto">
+              <div className="w-16 h-16 bg-purple-50/80 rounded-2xl flex items-center justify-center shadow-sm border border-purple-100 flex-shrink-0">
+                <Star className="text-purple-500" size={32} strokeWidth={2.5} />
               </div>
               <div>
                 <div className="font-extrabold text-xl text-slate-800 mb-0.5">Ages 1 - 15</div>
@@ -358,9 +355,9 @@ export default function Highlights() {
 
             <div className="hidden md:block w-[2px] h-16 bg-slate-100 rounded-full"></div>
 
-            <div className="flex items-center gap-5">
-              <div className="w-16 h-16 bg-green-50/80 rounded-2xl flex items-center justify-center shadow-sm border border-green-100">
-                <span className="text-3xl">🧼</span>
+            <div className="flex items-center gap-5 text-left w-full md:w-auto">
+              <div className="w-16 h-16 bg-green-50/80 rounded-2xl flex items-center justify-center shadow-sm border border-green-100 flex-shrink-0">
+                <Sparkles className="text-green-500" size={32} strokeWidth={2.5} />
               </div>
               <div>
                 <div className="font-extrabold text-xl text-slate-800 mb-0.5">Ultra Hygienic</div>

@@ -178,18 +178,7 @@ export default function Cafe() {
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] } as any} // FIXED
               className="text-center md:text-left flex-1 mt-10 md:mt-0"
             >
-              <motion.div
-                initial={{ opacity: 0, scale: 0.85 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 } as any} // FIXED
-                className="mb-6"
-              >
-                <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-6 py-2.5 rounded-full border border-white/30 shadow-lg">
-                  <span className="text-white">✨</span>
-                  <span className="uppercase tracking-[3px] text-[13px] font-extrabold text-white" style={{ fontFamily: "'Nunito', sans-serif" }}>Fairy Tales Cafe</span>
-                </div>
-              </motion.div>
+              
 
               <h2 className="cafe-title text-5xl md:text-6xl lg:text-7xl mb-5 drop-shadow-sm">
                 Yummy treats,<br />

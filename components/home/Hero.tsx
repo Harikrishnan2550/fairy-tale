@@ -2,7 +2,7 @@
 
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
-import { MapPin, PhoneCall, Calendar } from "lucide-react";
+import { PhoneCall, Calendar } from "lucide-react";
 
 /* PREMIUM UPGRADE: Added bouncy spring animations and staggered reveals */
 const containerVariants = {
@@ -21,24 +21,6 @@ const textLineVariants = {
     scale: 1,
     transition: { type: "spring", stiffness: 120, damping: 14 } as any // FIXED
   }
-};
-
-const slideLeft: Variants = {
-  hidden: { opacity: 0, x: -40 },
-  show: (delay: number = 0) => ({
-    opacity: 1,
-    x: 0,
-    transition: { type: "spring", stiffness: 80, damping: 15, delay } as any, // FIXED
-  }),
-};
-
-const slideRight: Variants = {
-  hidden: { opacity: 0, x: 40 },
-  show: (delay: number = 0) => ({
-    opacity: 1,
-    x: 0,
-    transition: { type: "spring", stiffness: 80, damping: 15, delay } as any, // FIXED
-  }),
 };
 
 // Pre-defined values for magical background bubbles
@@ -84,14 +66,13 @@ export default function LingokidsStyleHero() {
           font-weight: 900;
           line-height: 0.85;
           letter-spacing: -4px;
-          color: rgba(255,255,255,0.08); /* Softened the background text slightly */
+          color: rgba(255,255,255,0.08);
           white-space: nowrap;
         }
 
         .side-text {
           font-family: 'Nunito', sans-serif;
           font-weight: 800;
-          line-height: 1.15;
           letter-spacing: -0.5px;
         }
 
@@ -126,7 +107,7 @@ export default function LingokidsStyleHero() {
               delay: i * 0.4,
               repeat: Infinity,
               repeatDelay: 2,
-            } as any} // FIXED
+            } as any}
             className="absolute w-3 h-3 bg-white rounded-full pointer-events-none z-0"
             style={{
               left: `${10 + (i % 5) * 16}%`,
@@ -155,11 +136,11 @@ export default function LingokidsStyleHero() {
               delay: bubble.delay,
               repeat: Infinity,
               ease: "easeInOut",
-            } as any} // FIXED
+            } as any}
           />
         ))}
 
-        {/* 4. Animated Emojis - Now with a pop-in entrance! */}
+        {/* 4. Animated Emojis */}
         {floatingEmojis.map((item, i) => (
           <motion.div 
             key={`emoji-${i}`}
@@ -168,60 +149,69 @@ export default function LingokidsStyleHero() {
             initial={{ opacity: 0, scale: 0, rotate: -45 }}
             whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
             viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 100, delay: i * 0.15 } as any} // FIXED
+            transition={{ type: "spring", stiffness: 100, delay: i * 0.15 } as any}
           >
             {item.emoji}
           </motion.div>
         ))}
 
-        {/* 5. Animated Background Wordmark (Panning slowly) */}
+        {/* 5. Animated Background Wordmark */}
         <div className="play-wordmark absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden">
           <motion.div 
             style={{ fontSize: "clamp(100px, 20vw, 260px)" }}
             animate={{ x: [-30, 30, -30] }}
-            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" } as any} // FIXED
+            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" } as any}
           >
             FAIRY TALES
           </motion.div>
         </div>
 
         {/* MAIN CONTENT */}
-        <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 mt-4">
-          <div className="w-full max-w-6xl flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12">
+        <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 mt-4">
+          <div className="w-full max-w-6xl flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-12">
 
-            {/* LEFT SIDE - Staggered Text */}
+            {/* LEFT SIDE TEXT */}
             <motion.div
               variants={containerVariants}
               initial="hidden"
               animate="show"
-              className="lg:w-1/3 text-white text-center lg:text-right order-2 lg:order-1"
+              className="w-full lg:w-1/3 text-white flex justify-center lg:justify-end order-2 lg:order-1"
             >
-              <div className="side-text text-3xl md:text-4xl lg:text-[44px] drop-shadow-md flex flex-col gap-1 lg:gap-2">
-                <motion.span variants={textLineVariants}>Where little</motion.span>
-                <motion.span variants={textLineVariants} className="text-[#ffe4b5] drop-shadow-lg">hearts</motion.span>
-                <motion.span variants={textLineVariants}>find big joy</motion.span>
+              <div className="side-text text-[26px] sm:text-3xl md:text-4xl lg:text-[44px] leading-[1.2] lg:leading-[1.1] drop-shadow-md text-center lg:text-right">
+                
+                {/* Desktop View: 3 Lines */}
+                <div className="hidden lg:block">
+                  <motion.div variants={textLineVariants}>Where little</motion.div>
+                  <motion.div variants={textLineVariants} className="text-[#ffe4b5] drop-shadow-lg">hearts</motion.div>
+                  <motion.div variants={textLineVariants}>find big joy</motion.div>
+                </div>
+
+                {/* Mobile View: 2 Lines */}
+                <div className="block lg:hidden">
+                  <motion.div variants={textLineVariants}>Where little <span className="text-[#ffe4b5] drop-shadow-lg">hearts</span></motion.div>
+                  <motion.div variants={textLineVariants}>find big joy</motion.div>
+                </div>
+
               </div>
             </motion.div>
 
-            {/* CENTRAL IMAGE - Bouncy Spring Entrance */}
+            {/* CENTRAL IMAGE */}
             <div className="relative order-1 lg:order-2 flex justify-center">
               <motion.div
                 initial={{ scale: 0, rotate: -15, opacity: 0 }}
                 animate={{ scale: 1, rotate: 0, opacity: 1 }}
-                transition={{ type: "spring", stiffness: 70, damping: 14, delay: 0.2 } as any} // FIXED
+                transition={{ type: "spring", stiffness: 70, damping: 14, delay: 0.2 } as any}
                 className="relative z-20"
                 style={{ width: "clamp(240px, 35vw, 420px)", height: "clamp(240px, 35vw, 420px)" }}
               >
-                {/* Animated Breathing Pulse Glow */}
                 <motion.div 
                   animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.8, 0.5] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" } as any} // FIXED
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" } as any}
                   className="absolute inset-[-20px] rounded-full bg-white/20 blur-2xl z-0" 
                 />
-
                 <motion.div
                   animate={{ y: [0, -15, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" } as any} // FIXED
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" } as any}
                   className="relative w-full h-full rounded-full overflow-hidden shadow-2xl ring-[6px] ring-white/40 z-10 bg-[#FFB347]/50"
                 >
                   <Image
@@ -235,37 +225,48 @@ export default function LingokidsStyleHero() {
               </motion.div>
             </div>
 
-            {/* RIGHT SIDE - Staggered Text */}
+            {/* RIGHT SIDE TEXT */}
             <motion.div
               variants={containerVariants}
               initial="hidden"
               animate="show"
-              className="lg:w-1/3 text-white text-center lg:text-left order-3"
+              className="w-full lg:w-1/3 text-white flex justify-center lg:justify-start order-3"
             >
-              <div className="side-text text-3xl md:text-4xl lg:text-[44px] drop-shadow-md flex flex-col gap-1 lg:gap-2">
-                <motion.span variants={textLineVariants}>Every smile</motion.span>
-                <motion.span variants={textLineVariants}>tells a</motion.span>
-                <motion.span variants={textLineVariants} className="text-[#ffe4b5] drop-shadow-lg">beautiful story</motion.span>
+              <div className="side-text text-[26px] sm:text-3xl md:text-4xl lg:text-[44px] leading-[1.2] lg:leading-[1.1] drop-shadow-md text-center lg:text-left">
+                
+                {/* Desktop View: 3 Lines */}
+                <div className="hidden lg:block">
+                  <motion.div variants={textLineVariants}>Every smile</motion.div>
+                  <motion.div variants={textLineVariants}>tells a</motion.div>
+                  <motion.div variants={textLineVariants} className="text-[#ffe4b5] drop-shadow-lg">beautiful story</motion.div>
+                </div>
+
+                {/* Mobile View: 2 Lines */}
+                <div className="block lg:hidden">
+                  <motion.div variants={textLineVariants}>Every smile tells</motion.div>
+                  <motion.div variants={textLineVariants} className="text-[#ffe4b5] drop-shadow-lg">a beautiful story</motion.div>
+                </div>
+
               </div>
             </motion.div>
           </div>
 
-          {/* REFINED CTAs */}
+          {/* CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, type: "spring", stiffness: 100 } as any} // FIXED
-            className="mt-12 mb-8 flex flex-col sm:flex-row gap-4 justify-center items-center z-30 relative"
+            transition={{ delay: 0.8, type: "spring", stiffness: 100 } as any}
+            className="mt-10 md:mt-12 mb-8 flex flex-col sm:flex-row gap-4 justify-center items-center z-30 relative"
           >
-            {/* Primary CTA - CHANGED TO LINK TO /contact */}
+            {/* Primary CTA */}
             <motion.a
               href="/contact"
               whileHover={{ scale: 1.05, rotate: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white text-[#FF6B35] font-extrabold text-base md:text-lg px-8 py-3.5 rounded-full shadow-[0_10px_30px_rgba(255,255,255,0.35)] flex items-center justify-center gap-3 transition-transform"
+              className="bg-white text-[#FF6B35] font-extrabold text-[15px] md:text-base w-[260px] h-[52px] md:h-[56px] rounded-full shadow-[0_10px_30px_rgba(255,255,255,0.35)] flex items-center justify-center gap-3 transition-transform border-2 border-transparent"
               style={{ fontFamily: "'Nunito', sans-serif" }}
             >
-              <Calendar size={20} strokeWidth={2.5} />
+              <Calendar size={18} strokeWidth={2.5} />
               Book Your Visit
             </motion.a>
 
@@ -274,33 +275,14 @@ export default function LingokidsStyleHero() {
               href="tel:+919043937771"
               whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.15)", rotate: 2 }}
               whileTap={{ scale: 0.95 }}
-              className="border-2 border-white/80 text-white font-extrabold text-base md:text-lg px-8 py-3.5 rounded-full flex items-center justify-center gap-3 transition-all backdrop-blur-sm shadow-[0_5px_15px_rgba(0,0,0,0.1)]"
+              className="border-2 border-white/80 text-white font-extrabold text-[15px] md:text-base w-[260px] h-[52px] md:h-[56px] rounded-full flex items-center justify-center gap-3 transition-all backdrop-blur-sm shadow-[0_5px_15px_rgba(0,0,0,0.1)]"
               style={{ fontFamily: "'Nunito', sans-serif" }}
             >
-              <PhoneCall size={20} strokeWidth={2.5} />
+              <PhoneCall size={18} strokeWidth={2.5} />
               +91 90439 37771
             </motion.a>
           </motion.div>
         </div>
-
-        {/* Bottom Badges with Continuous Float */}
-        <motion.div 
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.2, type: "spring" } as any} // FIXED
-          className="absolute bottom-8 left-8 hidden lg:block z-20"
-        >
-          
-        </motion.div>
-
-        <motion.div 
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.2, type: "spring" } as any} // FIXED
-          className="absolute bottom-8 right-8 hidden lg:block z-20"
-        >
-          
-        </motion.div>
 
       </section>
     </>

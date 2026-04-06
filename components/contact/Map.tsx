@@ -62,16 +62,7 @@ export default function Map() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <motion.div
-              variants={textVariants}
-              className="mb-5"
-            >
-              {/* Premium Glass Badge */}
-              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/40 px-6 py-2.5 rounded-full shadow-lg">
-                <span className="text-white">📍</span>
-                <span className="uppercase tracking-[4px] text-[13px] font-extrabold text-white" style={{ fontFamily: "'Nunito', sans-serif" }}>Our Location</span>
-              </div>
-            </motion.div>
+            
 
             <motion.h2 variants={textVariants} className="map-title text-4xl md:text-5xl lg:text-6xl mb-5 drop-shadow-sm">
               Find Us <span style={{ color: "rgba(255,255,255,0.7)" }}>Here</span>

@@ -208,18 +208,7 @@ export default function Activities() {
             viewport={{ once: true }}
             className="text-center mb-16 relative z-10 mt-48 lg:mt-0"
           >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.85 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 } as any} // FIXED
-              className="mb-6"
-            >
-              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-6 py-2 rounded-full border border-white/30 shadow-lg">
-                <span className="text-white">✨</span>
-                <span className="uppercase tracking-[3px] text-sm font-bold text-white">Endless Fun</span>
-              </div>
-            </motion.div>
+            
 
             <h2 className="text-5xl md:text-6xl font-black text-white leading-none tracking-tighter"
                 style={{ fontFamily: "'Baloo 2', cursive", letterSpacing: "-2px" }}>

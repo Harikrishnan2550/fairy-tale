@@ -7,7 +7,7 @@ import { Mail } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import MobileMenu from "./MobileMenu"; // Ensure this path is correct based on your folder structure
+import MobileMenu from "./MobileMenu"; 
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -30,7 +30,8 @@ export default function Navbar() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@800;900&family=Nunito:wght@700;800&display=swap');
+        /* Added 'Emilys Candy' font specifically for the premium logo text */
+        @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@800;900&family=Nunito:wght@700;800&family=Emilys+Candy&display=swap');
 
         .navbar-scrolled {
           background: linear-gradient(135deg, rgba(255,179,71,0.88) 0%, rgba(255,107,53,0.88) 100%);
@@ -156,21 +157,32 @@ export default function Navbar() {
                 <Image
                   src="/images/logo.png"
                   alt="Fairy Tales Logo"
-                  width={60}
-                  height={60}
+                  width={70}
+                  height={70}
                   priority
-                  className="h-10 md:h-14 w-auto drop-shadow-lg"
+                  className="h-16 md:h-16 w-auto drop-shadow-lg"
                 />
               </motion.div>
+              
+              {/* EMILYS CANDY FONT + COLORED SHADE EFFECT HERE */}
               <motion.span 
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-white font-black text-[22px] md:text-[28px] tracking-wide drop-shadow-md whitespace-nowrap group-hover:text-white/90 transition-colors"
-                style={{ fontFamily: "'Baloo 2', cursive", paddingTop: "4px" }}
+                className="text-white whitespace-nowrap group-hover:scale-[1.03] transition-transform duration-300"
+                style={{ 
+                  fontFamily: "'Emilys Candy', serif", 
+                  fontWeight: 400, 
+                  fontSize: "clamp(24px, 4.5vw, 32px)", 
+                  letterSpacing: "1px",
+                  paddingTop: "6px",
+                  // A rich, warm orange/red color shade text-shadow
+                  textShadow: "2px 3px 6px rgba(194, 65, 12, 0.6)" 
+                }}
               >
                 Fairy Tales
               </motion.span>
+
             </Link>
           </div>
 

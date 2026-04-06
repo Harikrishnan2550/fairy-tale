@@ -83,12 +83,7 @@ export default function Experience() {
       <section className="py-20 lg:py-28 relative z-10">
         <Container>
           <motion.div variants={containerVariants} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center mb-16">
-            <motion.div variants={textVariants} className="mb-5">
-              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/40 px-6 py-2.5 rounded-full shadow-lg">
-                <span className="text-white">☕</span>
-                <span className="uppercase tracking-[4px] text-[13px] font-extrabold text-white" style={{ fontFamily: "'Nunito', sans-serif" }}>Cozy Vibes</span>
-              </div>
-            </motion.div>
+            
             <motion.h2 variants={textVariants} className="experience-title text-5xl md:text-6xl lg:text-7xl mb-5 drop-shadow-sm">
               Cafe <span style={{ color: "rgba(255,255,255,0.7)" }}>Experience</span>
             </motion.h2>

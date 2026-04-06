@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, Mail, MapPin, ChevronRight } from "lucide-react";
+import { Phone, Mail, MapPin, Home, Tent, Coffee, MessageSquare } from "lucide-react";
 
 const footerVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -68,9 +68,9 @@ export default function Footer() {
                 whileInView="show"
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="flex flex-col items-center lg:items-start text-center lg:text-left"
+                className="flex flex-col items-start text-left"
               >
-                <div className="bg-white/10 w-max p-4 rounded-[24px] mb-4 shadow-inner backdrop-blur-sm border border-white/10 group hover:bg-white/15 transition-colors cursor-pointer flex flex-col items-center lg:items-start mx-auto lg:mx-0">
+                <div className="bg-white/10 w-max p-4 rounded-[24px] mb-4 shadow-inner backdrop-blur-sm border border-white/10 group hover:bg-white/15 transition-colors cursor-pointer flex flex-col items-start mx-0">
                   <Image
                     src="/images/logo.png"
                     alt="Fairy Tales"
@@ -94,29 +94,31 @@ export default function Footer() {
                 whileInView="show"
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="flex flex-col items-center lg:items-start"
+                className="flex flex-col items-start"
               >
-                <h3 className="footer-heading text-center lg:text-left">Quick Links</h3>
+                <h3 className="footer-heading text-left">Quick Links</h3>
 
-                {/* Wrapping links in a w-fit and mx-auto so they left-align cleanly but sit in the center of mobile screens */}
-                <div className="flex flex-col items-start gap-4 footer-text text-slate-300 font-bold text-[15px] w-fit mx-auto lg:mx-0">
+                <div className="flex flex-col items-start gap-4 footer-text text-slate-300 font-bold text-[15px] w-full">
                   {[
-                    { name: "Home", path: "/" },
-                    { name: "Play Center", path: "/play-center" },
-                    { name: "Cafe", path: "/cafe" },
-                    { name: "Contact", path: "/contact" }
-                  ].map((link, index) => (
-                    <Link 
-                      key={index}
-                      href={link.path} 
-                      className="flex items-center gap-4 group hover:text-[#FF8C42] transition-colors"
-                    >
-                      <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-[#FF8C42]/20 transition-colors">
-                        <ChevronRight size={16} className="text-[#FF8C42] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-                      </div>
-                      <span className="group-hover:translate-x-1 transition-transform">{link.name}</span>
-                    </Link>
-                  ))}
+                    { name: "Home", path: "/", icon: Home },
+                    { name: "Play Center", path: "/play-center", icon: Tent },
+                    { name: "Cafe", path: "/cafe", icon: Coffee },
+                    { name: "Contact", path: "/contact", icon: MessageSquare }
+                  ].map((link, index) => {
+                    const Icon = link.icon;
+                    return (
+                      <Link 
+                        key={index}
+                        href={link.path} 
+                        className="flex items-center gap-4 group hover:text-[#FF8C42] transition-colors"
+                      >
+                        <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-[#FF8C42]/20 group-hover:border-[#FF8C42]/30 transition-all">
+                          <Icon size={15} className="text-slate-400 group-hover:text-[#FF8C42] transition-colors" />
+                        </div>
+                        <span className="group-hover:translate-x-1 transition-transform">{link.name}</span>
+                      </Link>
+                    )
+                  })}
                 </div>
               </motion.div>
 
@@ -127,11 +129,11 @@ export default function Footer() {
                 whileInView="show"
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
-                className="flex flex-col items-center lg:items-start"
+                className="flex flex-col items-start"
               >
-                <h3 className="footer-heading text-center lg:text-left">Contact</h3>
+                <h3 className="footer-heading text-left">Contact</h3>
 
-                <div className="flex flex-col items-start gap-6 footer-text text-slate-300 font-bold text-[15px] w-fit mx-auto lg:mx-0">
+                <div className="flex flex-col items-start gap-6 footer-text text-slate-300 font-bold text-[15px] w-full">
                   <div className="flex items-center gap-4 group cursor-pointer w-full">
                     <motion.div 
                       animate={{ y: [0, -4, 0] }}
@@ -163,11 +165,11 @@ export default function Footer() {
                 whileInView="show"
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 }}
-                className="flex flex-col items-center lg:items-start"
+                className="flex flex-col items-start"
               >
-                <h3 className="footer-heading text-center lg:text-left">Location</h3>
+                <h3 className="footer-heading text-left">Location</h3>
 
-                <div className="flex items-start gap-4 footer-text text-slate-300 font-bold text-[15px] group cursor-default w-fit mx-auto lg:mx-0">
+                <div className="flex items-start gap-4 footer-text text-slate-300 font-bold text-[15px] group cursor-default w-full">
                   <motion.div 
                     animate={{ y: [0, -4, 0] }}
                     transition={{ duration: 3, delay: 1, repeat: Infinity, ease: "easeInOut" } as any} // FIXED HERE

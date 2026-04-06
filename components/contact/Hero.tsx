@@ -90,15 +90,7 @@ export default function ContactHero() {
             className="text-center max-w-3xl mx-auto flex flex-col items-center"
           >
             
-            <motion.div
-              variants={textVariants}
-              className="mb-6 md:mb-8"
-            >
-              <span className="hero-badge transition-transform hover:scale-105 duration-300">
-                <span className="text-lg">👋</span>
-                We'd Love to Hear From You
-              </span>
-            </motion.div>
+           
 
             {/* Deepened the drop shadow for a premium 3D pop off the background */}
             <h1 className="hero-title text-6xl md:text-7xl lg:text-[90px] font-black text-white leading-[0.95] drop-shadow-2xl mb-6 flex flex-col items-center">
