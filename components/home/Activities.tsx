@@ -3,7 +3,9 @@
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import Image from "next/image";
+import { Rocket, Target, Mountain, Zap, Smile, Trophy } from "lucide-react";
 
+// PREMIUM UPGRADE: Swapped standard emojis for professional icons
 const activities = [
   {
     title: "Trampoline Zone",
@@ -13,7 +15,7 @@ const activities = [
     cardBg: "bg-gradient-to-br from-pink-50 to-pink-100",
     borderColor: "border-pink-200",
     titleColor: "text-pink-950",
-    icon: "🚀",
+    icon: Rocket,
   },
   {
     title: "Ball Blaster Arena",
@@ -23,7 +25,7 @@ const activities = [
     cardBg: "bg-gradient-to-br from-yellow-50 to-yellow-100",
     borderColor: "border-yellow-200",
     titleColor: "text-yellow-950",
-    icon: "🎯",
+    icon: Target,
   },
   {
     title: "Kids Climbing Wall",
@@ -33,7 +35,7 @@ const activities = [
     cardBg: "bg-gradient-to-br from-blue-50 to-blue-100",
     borderColor: "border-blue-200",
     titleColor: "text-blue-950",
-    icon: "🧗‍♂️",
+    icon: Mountain,
   },
   {
     title: "Zip Line Ride",
@@ -43,7 +45,7 @@ const activities = [
     cardBg: "bg-gradient-to-br from-purple-50 to-purple-100",
     borderColor: "border-purple-200",
     titleColor: "text-purple-950",
-    icon: "⚡",
+    icon: Zap,
   },
   {
     title: "Monkey Swing",
@@ -53,7 +55,7 @@ const activities = [
     cardBg: "bg-gradient-to-br from-green-50 to-green-100",
     borderColor: "border-green-200",
     titleColor: "text-green-950",
-    icon: "🐒",
+    icon: Smile,
   },
   {
     title: "Basketball Play",
@@ -63,7 +65,7 @@ const activities = [
     cardBg: "bg-gradient-to-br from-orange-50 to-orange-100",
     borderColor: "border-orange-200",
     titleColor: "text-orange-950",
-    icon: "🏀",
+    icon: Trophy,
   },
 ];
 
@@ -224,46 +226,51 @@ export default function Activities() {
 
           {/* GRID - UPDATED FOR COLORFUL PREMIUM UI */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 relative z-10">
-            {activities.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, type: "spring", stiffness: 100 } as any} // FIXED
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.03, y: -8, boxShadow: "0 30px 60px -15px rgba(180, 50, 10, 0.4)" }}
-                whileTap={{ scale: 0.98 }}
-                className={`activity-card p-5 group border-2 ${item.cardBg} ${item.borderColor}`}
-              >
-                {/* IMAGE CONTAINER - Premium Frosted Border */}
-                <div className="relative h-80 w-full rounded-[24px] overflow-hidden bg-white/60 backdrop-blur-sm mb-6 border-4 border-white/80 shadow-sm">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    className="object-cover group-hover:scale-110 transition duration-700 ease-out"
-                  />
-                  
-                  {/* Premium Solid Floating Emoji Badge */}
-                  <div className={`absolute top-4 right-4 w-14 h-14 rounded-full ${item.badge} shadow-lg flex items-center justify-center text-3xl group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300 border border-white/50`}>
-                    {item.icon}
+            {activities.map((item, index) => {
+              // Dynamically extracting the Lucide Icon Component
+              const Icon = item.icon;
+
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1, type: "spring", stiffness: 100 } as any} // FIXED
+                  viewport={{ once: true }}
+                  whileHover={{ scale: 1.03, y: -8, boxShadow: "0 30px 60px -15px rgba(180, 50, 10, 0.4)" }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`activity-card p-5 group border-2 ${item.cardBg} ${item.borderColor}`}
+                >
+                  {/* IMAGE CONTAINER - Premium Frosted Border */}
+                  <div className="relative h-80 w-full rounded-[24px] overflow-hidden bg-white/60 backdrop-blur-sm mb-6 border-4 border-white/80 shadow-sm">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      className="object-cover group-hover:scale-110 transition duration-700 ease-out"
+                    />
+                    
+                    {/* Premium Solid Floating Lucide Icon Badge */}
+                    <div className={`absolute top-4 right-4 w-14 h-14 rounded-full ${item.badge} shadow-lg flex items-center justify-center text-3xl group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300 border border-white/50`}>
+                      <Icon size={26} strokeWidth={2.5} />
+                    </div>
                   </div>
-                </div>
 
-                {/* TEXT CONTENT */}
-                <div className="px-3 pb-3 text-center">
-                  <h3 className={`text-2xl font-black mb-2 ${item.titleColor}`}
-                      style={{ fontFamily: "'Baloo 2', cursive" }}>
-                    {item.title}
-                  </h3>
+                  {/* TEXT CONTENT */}
+                  <div className="px-3 pb-3 text-center">
+                    <h3 className={`text-2xl font-black mb-2 ${item.titleColor}`}
+                        style={{ fontFamily: "'Baloo 2', cursive" }}>
+                      {item.title}
+                    </h3>
 
-                  <p className="text-slate-600/90 font-bold text-base leading-snug"
-                     style={{ fontFamily: "'Nunito', sans-serif" }}>
-                    {item.desc}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
+                    <p className="text-slate-600/90 font-bold text-base leading-snug"
+                       style={{ fontFamily: "'Nunito', sans-serif" }}>
+                      {item.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </Container>
       </section>

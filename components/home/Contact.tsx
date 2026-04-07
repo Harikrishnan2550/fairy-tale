@@ -169,7 +169,7 @@ export default function Contact() {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] } as any} // FIXED
             className="text-center mb-16 relative z-10"
           >
-           
+            
 
             <h2 className="contact-title text-5xl md:text-6xl lg:text-7xl mb-5 drop-shadow-sm">
               Plan Your
@@ -264,8 +264,9 @@ export default function Contact() {
                 
                 {/* Framed Map */}
                 <div className="w-full h-48 rounded-[32px] overflow-hidden bg-slate-100 shadow-inner border-[6px] border-slate-100 relative group cursor-pointer">
+                  {/* UPDATED: Exact coordinates applied to the Google Maps iframe embed */}
                   <iframe
-                    src="https://maps.google.com/maps?q=Tirupur&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3915.228514068305!2d77.3423333!3d11.0648333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTHCsDAzJzUzLjQiTiA3N8KwMjAnMzIuNCJF!5e0!3m2!1sen!2sin!4v1715000000000!5m2!1sen!2sin"
                     className="w-full h-full border-0 absolute inset-0 rounded-[26px]"
                     loading="lazy"
                   />

@@ -4,11 +4,21 @@ import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, Mail, MapPin, Home, Tent, Coffee, MessageSquare } from "lucide-react";
+// Removed Instagram from lucide-react to prevent build errors
+import { Phone, Mail, MapPin, Home, Tent, Coffee, MessageSquare, Utensils } from "lucide-react";
+
+// Custom Instagram Icon SVG to guarantee it works on any version
+const InstagramIcon = ({ size = 20, strokeWidth = 2.5, className = "" }) => (
+  <svg width={size} height={size} className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round">
+    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+  </svg>
+);
 
 const footerVariants = {
   hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } as any } // FIXED HERE
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } as any } 
 };
 
 export default function Footer() {
@@ -18,7 +28,6 @@ export default function Footer() {
         @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800;900&family=Nunito:wght@600;700;800&display=swap');
 
         .footer-bg {
-          /* A very dark, warm espresso brown/grey that perfectly complements the orange branding */
           background-color: #241a15; 
           position: relative;
           overflow: hidden;
@@ -78,7 +87,6 @@ export default function Footer() {
                     height={45}
                     className="object-contain group-hover:scale-105 transition-transform duration-500 mb-2"
                   />
-                  {/* Outlet name "Fairy Tales" added below the script 'F' logo */}
                   <h3 className="text-white font-extrabold text-xl tracking-wide group-hover:scale-105 transition-transform duration-500" style={{ fontFamily: "'Baloo 2', cursive" }}>Fairy Tales</h3>
                 </div>
 
@@ -103,6 +111,7 @@ export default function Footer() {
                     { name: "Home", path: "/", icon: Home },
                     { name: "Play Center", path: "/play-center", icon: Tent },
                     { name: "Cafe", path: "/cafe", icon: Coffee },
+                    { name: "Cafe Menu", path: "/cafe-menu", icon: Utensils },
                     { name: "Contact", path: "/contact", icon: MessageSquare }
                   ].map((link, index) => {
                     const Icon = link.icon;
@@ -122,7 +131,7 @@ export default function Footer() {
                 </div>
               </motion.div>
 
-              {/* CONTACT */}
+              {/* CONTACT & SOCIALS */}
               <motion.div
                 variants={footerVariants}
                 initial="hidden"
@@ -134,10 +143,11 @@ export default function Footer() {
                 <h3 className="footer-heading text-left">Contact</h3>
 
                 <div className="flex flex-col items-start gap-6 footer-text text-slate-300 font-bold text-[15px] w-full">
+                  {/* Phone */}
                   <div className="flex items-center gap-4 group cursor-pointer w-full">
                     <motion.div 
                       animate={{ y: [0, -4, 0] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" } as any} // FIXED HERE
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" } as any} 
                       className="w-12 h-12 rounded-[16px] bg-[#FF8C42] flex items-center justify-center flex-shrink-0 text-white shadow-[0_8px_20px_-6px_rgba(255,140,66,0.6)] group-hover:scale-110 group-hover:rotate-6 transition-all border border-white/20"
                     >
                       <Phone size={20} strokeWidth={2.5} />
@@ -145,15 +155,35 @@ export default function Footer() {
                     <a href="tel:9500099749" className="group-hover:text-[#FF8C42] transition-colors tracking-wide truncate">+91 95000 99749</a>
                   </div>
 
+                  {/* Email */}
                   <div className="flex items-center gap-4 group cursor-pointer w-full">
                     <motion.div 
                       animate={{ y: [0, -4, 0] }}
-                      transition={{ duration: 3, delay: 0.5, repeat: Infinity, ease: "easeInOut" } as any} // FIXED HERE
+                      transition={{ duration: 3, delay: 0.5, repeat: Infinity, ease: "easeInOut" } as any} 
                       className="w-12 h-12 rounded-[16px] bg-[#FF8C42] flex items-center justify-center flex-shrink-0 text-white shadow-[0_8px_20px_-6px_rgba(255,140,66,0.6)] group-hover:scale-110 group-hover:-rotate-6 transition-all border border-white/20"
                     >
                       <Mail size={20} strokeWidth={2.5} />
                     </motion.div>
                     <a href="mailto:fairytalesvpn3@gmail.com" className="group-hover:text-[#FF8C42] transition-colors truncate">fairytalesvpn3@gmail.com</a>
+                  </div>
+
+                  {/* Instagram */}
+                  <div className="flex items-center gap-4 group cursor-pointer w-full">
+                    <motion.div 
+                      animate={{ y: [0, -4, 0] }}
+                      transition={{ duration: 3, delay: 1.0, repeat: Infinity, ease: "easeInOut" } as any} 
+                      className="w-12 h-12 rounded-[16px] bg-[#FF8C42] flex items-center justify-center flex-shrink-0 text-white shadow-[0_8px_20px_-6px_rgba(255,140,66,0.6)] group-hover:scale-110 group-hover:rotate-6 transition-all border border-white/20"
+                    >
+                      <InstagramIcon size={20} strokeWidth={2.5} />
+                    </motion.div>
+                    <a 
+                      href="https://www.instagram.com/fairytales.vpn?igsh=MTU5aTR2aWJtMTV3aw==" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="group-hover:text-[#FF8C42] transition-colors truncate"
+                    >
+                      @fairytales.vpn
+                    </a>
                   </div>
                 </div>
               </motion.div>
@@ -172,7 +202,7 @@ export default function Footer() {
                 <div className="flex items-start gap-4 footer-text text-slate-300 font-bold text-[15px] group cursor-default w-full">
                   <motion.div 
                     animate={{ y: [0, -4, 0] }}
-                    transition={{ duration: 3, delay: 1, repeat: Infinity, ease: "easeInOut" } as any} // FIXED HERE
+                    transition={{ duration: 3, delay: 1.5, repeat: Infinity, ease: "easeInOut" } as any} 
                     className="w-12 h-12 mt-1 rounded-[16px] bg-[#FF8C42] flex items-center justify-center flex-shrink-0 text-white shadow-[0_8px_20px_-6px_rgba(255,140,66,0.6)] group-hover:scale-110 transition-all border border-white/20"
                   >
                     <MapPin size={20} strokeWidth={2.5} />
@@ -201,7 +231,6 @@ export default function Footer() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6">
-             
               <p>
                 Developed by{" "}
                 <a 

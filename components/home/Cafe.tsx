@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import Image from "next/image";
+import { Utensils } from "lucide-react";
 
 const menuItems = [
   {
@@ -141,7 +142,7 @@ export default function Cafe() {
               top: bubble.top,
             }}
             animate={{ y: [0, -30, 0], scale: [1, 1.05, 1] }}
-            transition={{ duration: bubble.duration, delay: bubble.delay, repeat: Infinity, ease: "easeInOut" } as any} // FIXED
+            transition={{ duration: bubble.duration, delay: bubble.delay, repeat: Infinity, ease: "easeInOut" } as any}
           />
         ))}
 
@@ -154,7 +155,7 @@ export default function Cafe() {
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, delay: i * 0.15 } as any} // FIXED
+            transition={{ duration: 1, delay: i * 0.15 } as any}
           >
             {item.emoji}
           </motion.div>
@@ -175,11 +176,9 @@ export default function Cafe() {
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] } as any} // FIXED
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] } as any}
               className="text-center md:text-left flex-1 mt-10 md:mt-0"
             >
-              
-
               <h2 className="cafe-title text-5xl md:text-6xl lg:text-7xl mb-5 drop-shadow-sm">
                 Yummy treats,<br />
                 <span style={{ color: "rgba(255,255,255,0.7)" }}>happy little hearts</span>
@@ -196,22 +195,27 @@ export default function Cafe() {
               initial={{ opacity: 0, x: 60, y: 20 }}
               whileInView={{ opacity: 1, x: 0, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] } as any} // FIXED
+              transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] } as any}
               className="relative w-96 md:w-80 lg:w-[800px] xl:w-[550px] aspect-square flex-shrink-0"
             >
               <motion.div
                 animate={{ y: [0, -14, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" } as any} // FIXED
-                className="relative w-full h-full"
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" } as any}
+                className="relative w-full h-full flex items-center justify-center"
               >
                 <div className="absolute inset-[10%] rounded-full bg-white/20 blur-2xl pointer-events-none" />
-                <Image
-                  src="/videos/panda4.gif"
-                  alt="Fairy Tale Cafe Panda eating"
-                  fill
-                  className="object-contain drop-shadow-2xl"
-                  unoptimized 
-                />
+                
+                {/* --- CHANGED TO VIDEO TAG HERE --- */}
+                <video 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline 
+                  className="w-full h-full object-contain drop-shadow-2xl relative z-10"
+                >
+                  <source src="/videos/panda5.webm" type="video/webm" />
+                </video>
+
               </motion.div>
             </motion.div>
 
@@ -225,7 +229,7 @@ export default function Cafe() {
                   key={index}
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] } as any} // FIXED
+                  transition={{ delay: index * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] } as any}
                   viewport={{ once: true }}
                   className="relative group"
                 >
@@ -268,15 +272,17 @@ export default function Cafe() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3 } as any} // FIXED
+            transition={{ delay: 0.3 } as any}
             className="text-center mt-12 mb-10 relative z-10"
           >
             <motion.a
-              href="/cafe"
+              href="/cafe-menu"
               className="group relative inline-flex items-center justify-center px-10 py-5 bg-white text-[#FF6B35] rounded-[32px] font-black text-[19px] gap-3 transition-all shadow-[0_15px_30px_-10px_rgba(255,107,53,0.5)] hover:shadow-[0_25px_40px_-10px_rgba(255,107,53,0.6)] hover:-translate-y-1"
               style={{ fontFamily: "'Nunito', sans-serif" }}
             >
-              <span className="text-3xl group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300">🍽️</span>
+              <div className="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <Utensils size={20} strokeWidth={2.5} className="text-[#FF6B35]" />
+              </div>
               Explore Full Menu
             </motion.a>
           </motion.div>

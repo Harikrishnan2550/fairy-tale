@@ -86,8 +86,9 @@ export default function Map() {
             } as any} // FIXED: Added 'as any' here as well
             className="w-full h-[400px] md:h-[500px] lg:h-[600px] rounded-[48px] overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.2)] border-[8px] border-white bg-slate-100 relative group"
           >
+            {/* UPDATED: Exact coordinates applied to the Google Maps iframe embed */}
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3915.228514104278!2d77.3484!3d11.0841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba9065a713994e7%3A0x6b83f06c1410710b!2sVeerapandi%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1712345678901!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3915.228514068305!2d77.3423333!3d11.0648333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTHCsDAzJzUzLjQiTiA3N8KwMjAnMzIuNCJF!5e0!3m2!1sen!2sin!4v1715000000000!5m2!1sen!2sin"
               className="w-full h-full border-0 absolute inset-0 rounded-[40px] shadow-inner"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
