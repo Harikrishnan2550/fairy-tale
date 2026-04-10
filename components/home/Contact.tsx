@@ -40,7 +40,7 @@ export default function Contact() {
     
     // Web3Forms Configuration
     // IMPORTANT: Paste your actual Web3Forms Access Key inside the quotes below!
-    formData.append("access_key", "17a64190-3468-49f1-b4a3-6f4fee3da094");
+    formData.append("access_key", "6995b71c-30fd-4d10-a606-c95ae4a1a372");
     formData.append("redirect", "false"); 
 
     try {
