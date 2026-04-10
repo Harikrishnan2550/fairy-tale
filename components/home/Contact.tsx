@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import Image from "next/image";
-import { MapPin, Send } from "lucide-react";
+import { MapPin, Send, Loader2, CheckCircle2 } from "lucide-react";
+import { useState } from "react";
 
 // Pre-defined values for magical background bubbles
 const bubbles = [
@@ -25,6 +26,47 @@ const floatingEmojis = [
 ];
 
 export default function Contact() {
+  // Web3Forms State Management
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setErrorMessage("");
+
+    const formData = new FormData(e.currentTarget);
+    
+    // Web3Forms Configuration
+    // IMPORTANT: Paste your actual Web3Forms Access Key inside the quotes below!
+    formData.append("access_key", "17a64190-3468-49f1-b4a3-6f4fee3da094");
+    formData.append("redirect", "false"); 
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setIsSuccess(true);
+        (e.target as HTMLFormElement).reset(); // Clear the form
+        
+        // Reset success message after 5 seconds
+        setTimeout(() => setIsSuccess(false), 5000);
+      } else {
+        throw new Error("Failed to send message");
+      }
+    } catch (error) {
+      setErrorMessage("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <>
       <style>{`
@@ -140,7 +182,7 @@ export default function Contact() {
               delay: bubble.delay,
               repeat: Infinity,
               ease: "easeInOut",
-            } as any} // FIXED
+            } as any}
           />
         ))}
 
@@ -153,7 +195,7 @@ export default function Contact() {
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, delay: i * 0.15 } as any} // FIXED
+            transition={{ duration: 1, delay: i * 0.15 } as any}
           >
             {item.emoji}
           </motion.div>
@@ -166,11 +208,9 @@ export default function Contact() {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] } as any} // FIXED
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] } as any}
             className="text-center mb-16 relative z-10"
           >
-            
-
             <h2 className="contact-title text-5xl md:text-6xl lg:text-7xl mb-5 drop-shadow-sm">
               Plan Your
               <br />
@@ -190,16 +230,16 @@ export default function Contact() {
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: "easeOut" } as any} // FIXED
+              transition={{ duration: 0.8, ease: "easeOut" } as any}
               className="w-full lg:w-5/12 relative flex items-center justify-center min-h-[350px] lg:min-h-full"
             >
               <motion.div
                 animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" } as any} // FIXED
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" } as any}
                 className="relative w-full h-full min-h-[600px] lg:min-h-0"
               >
                 <Image
-                  src="/images/panda-calling.png" /* Please make sure this is a transparent PNG! */
+                  src="/images/panda-calling.png" 
                   alt="Panda on the phone"
                   fill
                   className="object-contain drop-shadow-2xl"
@@ -213,7 +253,7 @@ export default function Contact() {
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" } as any} // FIXED
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" } as any}
               className="w-full lg:w-7/12 bg-white/95 backdrop-blur-xl rounded-[40px] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.2)] border-[6px] border-white p-8 lg:p-12 flex flex-col relative"
             >
               {/* Decorative inner blob for premium feel */}
@@ -223,21 +263,51 @@ export default function Contact() {
                 Send a Message ✨
               </h3>
               
-              {/* Form */}
-              <form className="flex flex-col gap-5 flex-1 relative z-10">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <input type="text" placeholder="Your Name" className="kids-input" required />
-                  <input type="email" placeholder="Email Address" className="kids-input" required />
-                </div>
-                <input type="text" placeholder="Subject (e.g. Birthday Party)" className="kids-input" />
-                <textarea placeholder="How can we help you today?" className="kids-input h-36 resize-none" required></textarea>
+              {/* Form wired up to Web3Forms */}
+              <form onSubmit={handleSubmit} className="flex flex-col gap-5 flex-1 relative z-10">
                 
+                {/* Spam Protection Honeypot */}
+                <input type="checkbox" name="botcheck" className="hidden" style={{ display: "none" }} />
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <input type="text" name="name" placeholder="Your Name" className="kids-input" required disabled={isSubmitting} />
+                  <input type="email" name="email" placeholder="Email Address" className="kids-input" required disabled={isSubmitting} />
+                </div>
+                <input type="text" name="subject" placeholder="Subject (e.g. Birthday Party)" className="kids-input" disabled={isSubmitting} />
+                <textarea name="message" placeholder="How can we help you today?" className="kids-input h-36 resize-none" required disabled={isSubmitting}></textarea>
+                
+                {/* Error Message Display */}
+                {errorMessage && (
+                  <p className="text-red-500 font-bold text-sm px-2">{errorMessage}</p>
+                )}
+
                 {/* Premium Button */}
-                <button type="submit" className="group bg-gradient-to-r from-[#FF8C42] to-[#FF6B35] text-white font-black text-[19px] rounded-full py-5 mt-4 shadow-[0_15px_30px_-10px_rgba(255,107,53,0.5)] hover:shadow-[0_25px_40px_-10px_rgba(255,107,53,0.6)] hover:-translate-y-1 transition-all flex items-center justify-center gap-3 border-2 border-white/30 relative overflow-hidden" style={{ fontFamily: "'Nunito', sans-serif" }}>
-                  <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+                <button 
+                  type="submit" 
+                  disabled={isSubmitting || isSuccess}
+                  className={`group font-black text-[19px] rounded-full py-5 mt-4 transition-all flex items-center justify-center gap-3 border-2 border-white/30 relative overflow-hidden ${
+                    isSuccess 
+                      ? "bg-green-500 text-white shadow-lg" 
+                      : "bg-gradient-to-r from-[#FF8C42] to-[#FF6B35] text-white shadow-[0_15px_30px_-10px_rgba(255,107,53,0.5)] hover:shadow-[0_25px_40px_-10px_rgba(255,107,53,0.6)] hover:-translate-y-1"
+                  }`} 
+                  style={{ fontFamily: "'Nunito', sans-serif" }}
+                >
+                  {!isSuccess && <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />}
+                  
                   <span className="relative z-10 flex items-center gap-3">
-                    <Send size={22} className="group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300" />
-                    Send Message
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 size={22} className="animate-spin" /> Sending...
+                      </>
+                    ) : isSuccess ? (
+                      <>
+                        <CheckCircle2 size={22} className="text-white" /> Sent Successfully!
+                      </>
+                    ) : (
+                      <>
+                        <Send size={22} className="group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300" /> Send Message
+                      </>
+                    )}
                   </span>
                 </button>
               </form>
@@ -262,11 +332,10 @@ export default function Contact() {
                   </p>
                 </div>
                 
-                {/* Framed Map */}
+                {/* Framed Map with exact coordinates */}
                 <div className="w-full h-48 rounded-[32px] overflow-hidden bg-slate-100 shadow-inner border-[6px] border-slate-100 relative group cursor-pointer">
-                  {/* UPDATED: Exact coordinates applied to the Google Maps iframe embed */}
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3915.228514068305!2d77.3423333!3d11.0648333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTHCsDAzJzUzLjQiTiA3N8KwMjAnMzIuNCJF!5e0!3m2!1sen!2sin!4v1715000000000!5m2!1sen!2sin"
+                    src="https://maps.google.com/maps?q=11°03'53.4%22N+77°20'32.4%22E&z=15&output=embed"
                     className="w-full h-full border-0 absolute inset-0 rounded-[26px]"
                     loading="lazy"
                   />

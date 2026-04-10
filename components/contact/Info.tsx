@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
-import { Phone, Mail, MapPin, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Send, Loader2, CheckCircle2 } from "lucide-react";
+import { useState } from "react";
 
 // PREMIUM UPGRADE: Added pastel gradients, solid icon backgrounds, and specific text colors
 const contactDetails = [
@@ -32,7 +33,8 @@ const contactDetails = [
     title: "Location",
     desc: "D.No.4/565, Kovil Thottam, Veerapandi Privu, Tirupur - 641605",
     icon: MapPin,
-    link: "https://maps.google.com/?q=Veerapandi+Privu+Tirupur",
+    // UPDATED: Real Google Maps link pointing to your exact coordinates!
+    link: "https://www.google.com/maps/place/11%C2%B003'53.4%22N+77%C2%B020'32.4%22E/",
     cardBg: "bg-gradient-to-br from-blue-50 to-blue-100",
     borderColor: "border-blue-200",
     iconBg: "bg-blue-500",
@@ -43,6 +45,47 @@ const contactDetails = [
 ];
 
 export default function ContactInfo() {
+  // Web3Forms State Management
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setErrorMessage("");
+
+    const formData = new FormData(e.currentTarget);
+    
+    // Web3Forms Configuration
+    // IMPORTANT: Paste your actual Web3Forms Access Key inside the quotes below!
+    formData.append("access_key", "17a64190-3468-49f1-b4a3-6f4fee3da094");
+    formData.append("redirect", "false"); 
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setIsSuccess(true);
+        (e.target as HTMLFormElement).reset(); // Clear the form
+        
+        // Reset success message after 5 seconds
+        setTimeout(() => setIsSuccess(false), 5000);
+      } else {
+        throw new Error("Failed to send message");
+      }
+    } catch (error) {
+      setErrorMessage("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <>
       <style>{`
@@ -154,7 +197,7 @@ export default function ContactInfo() {
                       {item.desc}
                     </p>
                   </div>
-                </motion.a> /* FIXED: This was previously </motion.div> by mistake! */
+                </motion.a> 
               );
             })}
           </div>
@@ -180,21 +223,51 @@ export default function ContactInfo() {
               </p>
             </div>
             
-            {/* Form */}
-            <form className="flex flex-col gap-6 flex-1 relative z-10">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <input type="text" placeholder="Your Name" className="kids-input" required />
-                <input type="email" placeholder="Email Address" className="kids-input" required />
-              </div>
-              <input type="text" placeholder="Subject (e.g. Birthday Party Inquiry)" className="kids-input" />
-              <textarea placeholder="How can we help you today?" className="kids-input h-40 resize-none" required></textarea>
+            {/* UPDATED: Form wired up to Web3Forms */}
+            <form onSubmit={handleSubmit} className="flex flex-col gap-6 flex-1 relative z-10">
               
+              {/* Spam Protection Honeypot */}
+              <input type="checkbox" name="botcheck" className="hidden" style={{ display: "none" }} />
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <input type="text" name="name" placeholder="Your Name" className="kids-input" required disabled={isSubmitting} />
+                <input type="email" name="email" placeholder="Email Address" className="kids-input" required disabled={isSubmitting} />
+              </div>
+              <input type="text" name="subject" placeholder="Subject (e.g. Birthday Party Inquiry)" className="kids-input" disabled={isSubmitting} />
+              <textarea name="message" placeholder="How can we help you today?" className="kids-input h-40 resize-none" required disabled={isSubmitting}></textarea>
+              
+              {/* Error Message Display */}
+              {errorMessage && (
+                <p className="text-red-500 font-bold text-sm px-2 text-center">{errorMessage}</p>
+              )}
+
               {/* Premium Button */}
-              <button type="submit" className="group w-full sm:w-auto sm:self-center px-12 bg-gradient-to-r from-[#FF8C42] to-[#FF6B35] text-white font-black text-[19px] rounded-full py-5 mt-4 shadow-[0_15px_30px_-10px_rgba(255,107,53,0.5)] hover:shadow-[0_25px_40px_-10px_rgba(255,107,53,0.6)] hover:-translate-y-1 transition-all flex items-center justify-center gap-3 border-2 border-white/30 relative overflow-hidden" style={{ fontFamily: "'Nunito', sans-serif" }}>
-                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+              <button 
+                type="submit" 
+                disabled={isSubmitting || isSuccess}
+                className={`group w-full sm:w-auto sm:self-center px-12 font-black text-[19px] rounded-full py-5 mt-4 transition-all flex items-center justify-center gap-3 border-2 border-white/30 relative overflow-hidden ${
+                  isSuccess 
+                    ? "bg-green-500 text-white shadow-lg" 
+                    : "bg-gradient-to-r from-[#FF8C42] to-[#FF6B35] text-white shadow-[0_15px_30px_-10px_rgba(255,107,53,0.5)] hover:shadow-[0_25px_40px_-10px_rgba(255,107,53,0.6)] hover:-translate-y-1"
+                }`} 
+                style={{ fontFamily: "'Nunito', sans-serif" }}
+              >
+                {!isSuccess && <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />}
+                
                 <span className="relative z-10 flex items-center gap-3">
-                  <Send size={22} className="group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300" />
-                  Send Message
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 size={22} className="animate-spin" /> Sending...
+                    </>
+                  ) : isSuccess ? (
+                    <>
+                      <CheckCircle2 size={22} className="text-white" /> Sent Successfully!
+                    </>
+                  ) : (
+                    <>
+                      <Send size={22} className="group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300" /> Send Message
+                    </>
+                  )}
                 </span>
               </button>
             </form>
